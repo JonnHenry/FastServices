@@ -1,0 +1,16 @@
+.header_login{
+    margin-top:60px;
+}
+
+.center-img{
+   width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center{
+    display: inline-block;
+    justify-content: center;
+    display: flex;
+}

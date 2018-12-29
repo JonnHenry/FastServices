@@ -1,0 +1,25 @@
+.enlaceboton {
+    margin: 0px;
+    padding: 2px;
+    padding-left: 0%;
+    display: block;
+    float: none;
+    text-align: center;
+}
+
+.enlaceboton:hover {
+    margin: 0px;
+    border-radius: 5px 5px 5px 5px;
+    background-color: gainsboro;
+    padding: 0px;
+    display: block;
+    float: none;
+    text-align: center;
+}
+
+.parrafo{
+    font-family: "Times New Roman", Georgia, Serif;
+    font-size: 18px;
+    color: dimgrey;
+    align-content: center;
+}
