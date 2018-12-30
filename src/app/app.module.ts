@@ -8,6 +8,8 @@ import { RegistroComponent } from './registro/registro.component';
 import { HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { routing, appRoutingProviders} from './app-routing.module';
+import { BuscarComponent } from './buscar/buscar.component';
+import { SolicitarComponent } from './solicitar/solicitar.component';
 
 let config = new AuthServiceConfig([
   {
@@ -26,7 +28,9 @@ export function provideConfig() {
     HomeComponent,
     LoginComponent,
     RegistroComponent,
-    LoginComponent
+    LoginComponent,
+    BuscarComponent,
+    SolicitarComponent
   ],
   imports: [
     BrowserModule,
