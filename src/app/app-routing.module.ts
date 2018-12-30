@@ -8,7 +8,7 @@ import { BuscarComponent } from './buscar/buscar.component';
 
 
 const appRoutes: Routes = [
-  {path: 'home',component : HomeComponent},
+  {path: '',component : HomeComponent},
   {path: 'login',component : LoginComponent},
   {path: 'register',component : RegistroComponent},
   {path: 'buscar',component : BuscarComponent},
