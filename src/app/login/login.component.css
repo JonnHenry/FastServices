@@ -14,3 +14,8 @@
     justify-content: center;
     display: flex;
 }
+
+.imagen{
+    background-image: url("/assets/images/ingreso/banner-ingreso.png");
+    background-size:100% 100%;
+}

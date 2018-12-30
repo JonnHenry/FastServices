@@ -1,50 +1,55 @@
-<div class="container header_login">
-  <div class="row justify-content-center">
-    <div class="col-sm-6 col-md-4">
-      <div class="card text-center">
-        <div class="card-header">
-          <div>
-            <img class="center-img" src="assets/images/fast_services_logo_pagina.png">
-            <br />
-            <h5> Inicie sesión para continuar</h5>
-          </div>
-        </div>
-        <div class="card-body text-center">
-          <form role="form" action="buscar_productos.html" method="POST" onsubmit="return 'true'">
-            <fieldset>
-              <div class="row center">
-                <div class="col-sm-12 col-md-10 ">
-
-                  <div class="form-group center" >
-                    <div class="input-group mb-2">
-                      <div class="input-group-prepend">
-                        <div class="input-group-text"><img src="assets/images/correo.png"> </div>
-                      </div>
-                      <input type="email" class="form-control" id="inlineFormInputGroup" placeholder="Correo" required>
-                    </div>
-                  </div>
-
-                  <div class="form-group mx-auto">
-                      <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text"><img src="assets/images/clave.png"></div>
-                        </div>
-                        <input class="form-control" placeholder="Contraseña" name="password" type="password" value=""
-                        required>
-                      </div>
-                    </div>
-                  <div class="form-group">
-                    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Ingresar">
-                  </div>
+<div class="imagen">
+    <div class="container header_login col-lg-12 col-xs-12 col-sm-12">
+        <div class="row justify-content-center ">
+          <div class="col-sm-6 col-md-4">
+            <div class="card text-center">
+              <div class="card-header">
+                <div>
+                  <img class="center-img" src="assets/images/fast_services_logo_pagina.png">
+                  <br />
+                  <h5> Inicie sesión para continuar</h5>
                 </div>
               </div>
-            </fieldset>
-          </form>
-        </div>
-        <div class="card-footer">
-          No tiene cuenta! <a href="registro.html"> Registrese aqui </a>
+              <div class="card-body text-center">
+
+                <form role="form" action="buscar_productos.html" method="POST" onsubmit="return 'true'">
+                  <fieldset>
+                    <div class="row center">
+                      <div class="col-sm-12 col-md-10 ">
+      
+                        <div class="form-group center" >
+                          <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text"><img src="assets/images/correo.png"> </div>
+                            </div>
+                            <input type="email" class="form-control" id="inlineFormInputGroup" placeholder="Correo" required >
+                          </div>
+                        </div>
+      
+                        <div class="form-group ">
+                            <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text"><img src="assets/images/clave.png"></div>
+                              </div>
+                              <input class="form-control" placeholder="Contraseña" name="password" type="password" value=""
+                              required >
+                            </div>
+                          </div>
+                        <div class="form-group">
+                          <input type="submit" class="btn btn-lg btn-primary btn-block" value="Ingresar">
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                </form>
+
+              </div>
+              <div class="card-footer">
+                No tienes cuenta! <a routerLink="/registry"> Registrese aqui </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+      
 </div>
