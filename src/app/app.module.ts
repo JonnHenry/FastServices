@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider, SocialLoginModule  } from 'angularx-social-login';
+import { AuthServiceConfig, FacebookLoginProvider, LinkedInLoginProvider, SocialLoginModule  } from 'angularx-social-login';
 import { RegistroComponent } from './registro/registro.component';
+import { HttpClientModule} from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { routing, appRoutingProviders} from './app-routing.module';
 
 let config = new AuthServiceConfig([
   {
@@ -30,14 +31,18 @@ export function provideConfig() {
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    FormsModule,
+    routing,
+    HttpClientModule,
     SocialLoginModule
   ],
   providers: [
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig,
-    }
+      
+    },
+    appRoutingProviders
   ],
   bootstrap: [AppComponent]
 })
