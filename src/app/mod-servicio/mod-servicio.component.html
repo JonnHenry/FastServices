@@ -1,3 +1,111 @@
-<p>
-  mod-servicio works!
-</p>
+<header class="header">
+  <!-- Header Main -->
+  <br />
+  <br />
+  <div class="header_main">
+    <div class="container">
+      <div class="row">
+
+        <!-- Logo -->
+        <div class="col-lg-2 col-sm-2 col-3 order-1 col-xs-2">
+          <div class="logo_container">
+            <div class="logo img-responsive"><a routerLink="/home"><img src="assets/images/fast_services_logo_pagina.png"></a></div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-6 order-2 text-lg-left text-right col-xs-6">
+          <div class="header_search">
+            <div class="header_search_content">
+
+              <ul class="nav">
+                <li class="nav-item border">
+                  <a class="nav-link active" href="#">
+                    <h4>Home</h4>
+                  </a>
+                </li>
+
+                <li class="nav-item border rounded">
+                  <a class="nav-link" href="#">
+                    <h4>Buscar</h4>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Usuario -->
+        <div class="col-lg-4 col-4 order-lg-3 col-sm-4 order-3 text-lg-left text-right col-xs-4">
+          <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+            <div class="wishlist d-flex flex-row align-items-center justify-content-end">
+              <!--Imagen de l usuario-->
+              <div class="wishlist_icon"><img src="assets/images/user.png" alt="Usuario"></div>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                  aria-expanded="false"></a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" routerLink="/configuracion">Configuración</a>
+                  <a class="dropdown-item" routerLink="/home">Cerrar sesión</a>
+                </div>
+              </li>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="tab-pane fade show" id="service" role="tabpanel" aria-labelledby="service-tab">
+  <br />
+
+  <div class="tab-pane" id="account">
+    <h4 class="info-text"> Servicio a ofrecer en la pagina </h4>
+    <form action="configuracion.html" method="POST" id="servicios_usuario">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="picture-container">
+            <!--Imagen del servicio-->
+            <div class="picture">
+              <img src="assets/images/default-avatar.png" class="picture-src" title="" />
+              <input type="file" id="wizard-services">
+            </div>
+            <h6>Elija una imagen</h6>
+          </div>
+
+          <label>Servicio :</label>
+          <select name="servicios" id="servicios">
+            <option value="ninguno">Ninguno</option>
+            <option value="ninguno">Ninguno</option>
+          </select>
+
+          <button type="submit" class="btn-normal " name="agregar" onclick="">Agregar</button>
+          <br />
+          <br />
+
+          <div>
+            <textarea rows="4" cols="50" readonly name="text_servicios" disabled></textarea>
+          </div>
+          <br />
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+
+</div>
+
+
+
+<!-- start footer Area -->
+<footer class="footer-area ">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-sm-12">
+        <img src="assets/images/fast_services_logo_pagina.png" align="rigth">
+        <p>Todos los derechos reservados 2018-2019</p>
+      </div>
+    </div>
+  </div>
+</footer>
