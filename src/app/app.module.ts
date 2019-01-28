@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { routing, appRoutingProviders} from './app-routing.module';
 import { BuscarComponent } from './buscar/buscar.component';
 import { SolicitarComponent } from './solicitar/solicitar.component';
+import { ConfiguracionComponent } from './configuracion/configuracion.component';
 
 let config = new AuthServiceConfig([
   {
@@ -30,7 +31,8 @@ export function provideConfig() {
     RegistroComponent,
     LoginComponent,
     BuscarComponent,
-    SolicitarComponent
+    SolicitarComponent,
+    ConfiguracionComponent
   ],
   imports: [
     BrowserModule,

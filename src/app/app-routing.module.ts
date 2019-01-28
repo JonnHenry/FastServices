@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { SolicitarComponent } from './solicitar/solicitar.component';
 import { BuscarComponent } from './buscar/buscar.component';
+import { ConfiguracionComponent } from './configuracion/configuracion.component';
 
 
 const appRoutes: Routes = [
@@ -13,9 +14,8 @@ const appRoutes: Routes = [
   {path: 'register', component : RegistroComponent},
   {path: 'buscar', component : BuscarComponent},
   {path: 'registro', component : RegistroComponent},
-  {path: 'solicitar', component : SolicitarComponent}
-
-
+  {path: 'solicitar', component : SolicitarComponent},
+  {path: 'configuracion', component : ConfiguracionComponent}
 ];
 
 export const appRoutingProviders: any[] = [];
