@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ServiciosComponent } from './servicios.component';
+import { ModClaveComponent } from './mod-clave.component';
 
-describe('ServiciosComponent', () => {
-  let component: ServiciosComponent;
-  let fixture: ComponentFixture<ServiciosComponent>;
+describe('ModClaveComponent', () => {
+  let component: ModClaveComponent;
+  let fixture: ComponentFixture<ModClaveComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ServiciosComponent ]
+      declarations: [ ModClaveComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ServiciosComponent);
+    fixture = TestBed.createComponent(ModClaveComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

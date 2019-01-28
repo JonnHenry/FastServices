@@ -13,6 +13,8 @@ import { SolicitarComponent } from './solicitar/solicitar.component';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
 import { ModUsuarioComponent } from './mod-usuario/mod-usuario.component';
 import { ServiciosComponent } from './servicios/servicios.component';
+import { ModClaveComponent } from './mod-clave/mod-clave.component';
+import { ModServicioComponent } from './mod-servicio/mod-servicio.component';
 
 let config = new AuthServiceConfig([
   {
@@ -36,7 +38,9 @@ export function provideConfig() {
     SolicitarComponent,
     ConfiguracionComponent,
     ModUsuarioComponent,
-    ServiciosComponent
+    ServiciosComponent,
+    ModClaveComponent,
+    ModServicioComponent
   ],
   imports: [
     BrowserModule,

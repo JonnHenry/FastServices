@@ -1,3 +1,60 @@
+<header class="header">
+    <!-- Header Main -->
+    <br/>
+    <br/>
+    <div class="header_main">
+      <div class="container">
+        <div class="row">
+
+          <!-- Logo -->
+          <div class="col-lg-2 col-sm-2 col-3 order-1 col-xs-2">
+            <div class="logo_container">
+              <div class="logo img-responsive"><a routerLink="/home"><img src="assets/images/fast_services_logo_pagina.png"></a></div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-sm-6 order-2 text-lg-left text-right col-xs-6">
+            <div class="header_search">
+              <div class="header_search_content">
+
+                <ul class="nav">
+                  <li class="nav-item border">
+                    <a class="nav-link active" href="#">
+                      <h4>Home</h4>
+                    </a>
+                  </li>
+
+                  <li class="nav-item border rounded">
+                    <a class="nav-link" href="#">
+                      <h4>Buscar</h4>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Usuario -->
+          <div class="col-lg-4 col-4 order-lg-3 col-sm-4 order-3 text-lg-left text-right col-xs-4">
+            <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+              <div class="wishlist d-flex flex-row align-items-center justify-content-end">
+                <!--Imagen de l usuario-->
+                <div class="wishlist_icon"><img src="assets/images/user.png" alt="Usuario"></div>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"></a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" routerLink="/configuracion">Configuración</a>
+                      <a class="dropdown-item" routerLink="/home">Cerrar sesión</a>
+                    </div>
+                  </li>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
 <!--Pestaña para modificar el perfil del usuario-->
 <section class="tab-pane fade show " id="profile" role="tabpanel" aria-labelledby="profile-tab">
     <br />
@@ -60,4 +117,3 @@
   </section>
   <!--Fin panel para modificar el usuario -->
 
-  
