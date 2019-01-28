@@ -8,13 +8,15 @@ import { BuscarComponent } from './buscar/buscar.component';
 
 
 const appRoutes: Routes = [
-  {path: '',component : HomeComponent},
-  {path: 'login',component : LoginComponent},
-  {path: 'register',component : RegistroComponent},
-  {path: 'buscar',component : BuscarComponent},
-  {path: 'registro',component : RegistroComponent}
-    
+  {path: '', component : HomeComponent},
+  {path: 'login', component : LoginComponent},
+  {path: 'register', component : RegistroComponent},
+  {path: 'buscar', component : BuscarComponent},
+  {path: 'registro', component : RegistroComponent},
+  {path: 'solicitar', component : SolicitarComponent}
+
+
 ];
 
 export const appRoutingProviders: any[] = [];
-export const routing : ModuleWithProviders = RouterModule.forRoot(appRoutes);
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

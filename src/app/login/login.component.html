@@ -12,31 +12,31 @@
               </div>
               <div class="card-body text-center">
 
-                <form role="form" action="buscar_productos.html" method="POST" onsubmit="return 'true'">
+                <form role="form" method="POST" onsubmit="return 'true'">
                   <fieldset>
                     <div class="row center">
                       <div class="col-sm-12 col-md-10 ">
-      
+
                         <div class="form-group center" >
                           <div class="input-group mb-2">
                             <div class="input-group-prepend">
                               <div class="input-group-text"><img src="assets/images/correo.png"> </div>
                             </div>
-                            <input type="email" class="form-control" id="inlineFormInputGroup" placeholder="Correo" required >
+                            <input type="email" class="form-control" placeholder="Correo" #email name="email" required>
                           </div>
                         </div>
-      
+
                         <div class="form-group ">
                             <div class="input-group mb-2">
                               <div class="input-group-prepend">
                                 <div class="input-group-text"><img src="assets/images/clave.png"></div>
                               </div>
-                              <input class="form-control" placeholder="Contraseña" name="password" type="password" value=""
+                              <input class="form-control" placeholder="Contraseña" #password name="password" type="password" value=""
                               required >
                             </div>
                           </div>
                         <div class="form-group">
-                          <input type="submit" class="btn btn-lg btn-primary btn-block" value="Ingresar">
+                          <input type="submit" (click)="Login(email.value,password.value)" class="btn btn-lg btn-primary btn-block" value="Ingresar" id="login-button">
                         </div>
                       </div>
                     </div>
@@ -51,5 +51,5 @@
           </div>
         </div>
       </div>
-      
+
 </div>

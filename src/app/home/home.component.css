@@ -23,3 +23,17 @@
     color: dimgrey;
     align-content: center;
 }
+
+* {
+  scroll-behavior: smooth;
+}
+
+
+.masthead {
+  height: 100vh;
+  min-height: 500px;
+  background-image: url('/assets/images/ingreso/banner-ingreso.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

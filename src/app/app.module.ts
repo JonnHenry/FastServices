@@ -14,7 +14,7 @@ import { SolicitarComponent } from './solicitar/solicitar.component';
 let config = new AuthServiceConfig([
   {
     id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider("523602188127601")
+    provider: new FacebookLoginProvider('523602188127601'),
   }
 ]);
 
@@ -43,7 +43,7 @@ export function provideConfig() {
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig,
-      
+
     },
     appRoutingProviders
   ],

@@ -1,4 +1,7 @@
+import { appRoutingProviders, routing } from './../app-routing.module';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(protected router: Router) {}
 
   ngOnInit() {
+  }
+
+  Login(email: string, password: string) {
+    console.log('Funciono');
+    this.router.navigate(['/buscar']);
   }
 
 }
