@@ -1,3 +1,217 @@
-<p>
-  configuracion works!
-</p>
+<header class="header">
+  <!-- Header Main -->
+  <div class="header_main">
+    <div class="container">
+      <div class="row">
+
+        <!-- Logo -->
+        <div class="col-lg-2 col-sm-2 col-3 order-1 col-xs-2">
+          <div class="logo_container">
+            <div class="logo img-responsive"><a routerLink="/home"><img src="assets/images/fast_services_logo_pagina.png"></a></div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-6 order-2 text-lg-left text-right col-xs-6">
+          <div class="header_search">
+            <div class="header_search_content">
+
+              <ul class="nav">
+                <li class="nav-item border">
+                  <a class="nav-link active" href="#">
+                    <h4>Home</h4>
+                  </a>
+                </li>
+
+                <li class="nav-item border rounded">
+                  <a class="nav-link" href="#">
+                    <h4>Buscar</h4>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Usuario -->
+        <div class="col-lg-4 col-4 order-lg-3 col-sm-4 order-3 text-lg-left text-right col-xs-4">
+          <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+            <div class="wishlist d-flex flex-row align-items-center justify-content-end">
+              <!--Imgen de l usuario-->
+              <div class="wishlist_icon"><img src="assets/images/user.png" alt=""></div>
+              <div class="wishlist_content">
+                <ul class="standard_dropdown main_nav_dropdown">
+                  <li class="hassubs">
+                    <a href="#">User name<i class="fas fa-chevron-down"></i></a>
+                    <ul>
+                      <li><a routerLink="/configuracion">Configuración</a></li>
+                      <li><a routerLink="/login">Cerrar Sesión</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Contraseña</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Información Usuario</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" id="service-tab" data-toggle="tab" href="#service" role="tab" aria-controls="service">Servicios</a>
+            </li>
+
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <br />
+                <div>
+                    <div class="col-sm-5 col-lg-5 col-md-5 col-md-offset-4">
+                        <div style="padding-bottom: 30px;">
+                            <div class="center">
+                                <h5>Modificar la contraseña</h5>
+                            </div>
+                            <div>
+                                <div class="picture">
+                                    <div class="center">
+                                        <div class="picture-container">
+                                            <div class="picture">
+                                                <img src="assets/images/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                                            </div>
+                                            <h6>Elija una imagen</h6>
+                                        </div>
+                                    </div>
+                                    <form action="configuracion.html" method="POST" id="passwordform">
+                                        <div class="form-group">
+                                            <label>Contraseña actual <small></small></label>
+                                            <input name="password" type="password" class="form-control" placeholder="Ingrese su contraseña actual" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Contraseña nueva</label>
+                                            <input name="password" type="password" class="form-control" placeholder="Ingrese su contraseña nueva" required>
+                                        </div>
+                                        <input type="submit" title="Modificar" class="btn-normal" value="Modificar">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="tab-pane fade show " id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <br />
+                <div>
+                    <div class="col-sm-5 col-lg-5 col-md-5 col-md-offset-4">
+                        <div style="padding-bottom: 30px;">
+                            <div class="center">
+                                <h5>Modificar datos del usuario</h5>
+                                <div class="picture-container">
+                                    <div class="picture">
+                                        <img src="assets/images/default-avatar.png" class="picture-src" title="" />
+                                        <input type="file" id="wizard-picture">
+                                    </div>
+                                    <h6>Elija una imagen</h6>
+                                </div>
+                            </div>
+                            <form action="configuracion.html" method="POST" id="usuario_datos">
+
+                                <div class="form-group">
+                                    <label>Nombre </label>
+                                    <input id="firstname" type="text" class="form-control" placeholder="Ingrese su nombre" disabled required title="Ingrese la primera letra del nombre en mayuscula, sin numeros">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Apellido</label>
+                                    <input id="lastname" type="text" class="form-control" placeholder="Ingrese su appelido" disabled required  title="Ingrese la primera letra del nombre en mayuscula, sin numeros">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Pais</label>
+                                    <input type="text" class="form-control" placeholder="Pais del usuario" id="pais" minlength="2" disabled required  title="Ingrese la primera letra del nombre en mayuscula, sin numeros">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Provincia</label>
+                                    <input type="text" class="form-control" placeholder="Provincia del usuario" id="provincia" minlength="2" disabled required  title="Ingrese la primera letra del nombre en mayuscula, sin numeros">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Ciudad</label><br>
+                                    <input type="text" class="form-control" placeholder="Ciudad del usuario" id="ciudad" minlength="2" disabled required title="Ingrese la primera letra del nombre en mayuscula, sin numeros">
+                                </div>
+
+                                <input type="button" title="Modificar" class="btn-normal" value="Modificar" onclick="modificar();">
+                                <input type="submit" title="Guardar" class="btn-normal" value="Guardar" id="guardar">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade show" id="service" role="tabpanel" aria-labelledby="service-tab">
+                <br />
+
+                <div class="tab-pane" id="account">
+                    <h4 class="info-text"> Servicio a ofrecer en la pagina </h4>
+                    <form action="configuracion.html" method="POST" id="servicios_usuario">
+                        <div class="row">
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <div class="picture-container">
+                                    <div class="picture">
+                                        <img src="assets/images/default-avatar.png" class="picture-src" title="" />
+                                        <input type="file" id="wizard-services">
+                                    </div>
+                                    <h6>Elija una imagen</h6>
+                                </div>
+
+                                <label>Servicio :</label>
+                                <select name="servicios" id="servicios">
+                                    <option value="ninguno">Ninguno</option>
+                                    <option value="ninguno">Ninguno</option>
+                                </select>
+
+                                <button type="submit" class="btn-normal " name="agregar" onclick="">Agregar</button>
+                                <br />
+                                <br />
+
+                                <div>
+                                    <textarea rows="4" cols="50" readonly name="text_servicios" disabled></textarea>
+                                </div>
+                                <br/>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+ <!-- End footer Area -->
+ <br />
+ <br />
+ <br />
+<!-- start footer Area -->
+<footer class="footer-area ">
+ <div class="container">
+   <div class="row">
+     <div class="col-lg-12 col-sm-12">
+       <img src="assets/images/fast_services_logo_pagina.png" align="rigth">
+       <p>Todos los derechos reservados 2018-2019</p>
+     </div>
+   </div>
+ </div>
+</footer>
