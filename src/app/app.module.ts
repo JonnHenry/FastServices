@@ -11,6 +11,8 @@ import { routing, appRoutingProviders} from './app-routing.module';
 import { BuscarComponent } from './buscar/buscar.component';
 import { SolicitarComponent } from './solicitar/solicitar.component';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
+import { ModUsuarioComponent } from './mod-usuario/mod-usuario.component';
+import { ServiciosComponent } from './servicios/servicios.component';
 
 let config = new AuthServiceConfig([
   {
@@ -32,7 +34,9 @@ export function provideConfig() {
     LoginComponent,
     BuscarComponent,
     SolicitarComponent,
-    ConfiguracionComponent
+    ConfiguracionComponent,
+    ModUsuarioComponent,
+    ServiciosComponent
   ],
   imports: [
     BrowserModule,

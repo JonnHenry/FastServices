@@ -1,0 +1,42 @@
+<!--Panel para ofrecer los servicios a los usuarios-->
+
+<section class="tab-pane fade show" id="service" role="tabpanel" aria-labelledby="service-tab">
+    <br />
+
+    <div class="tab-pane" id="account">
+      <h4 class="info-text"> Servicio a ofrecer en la pagina </h4>
+      <form action="configuracion.html" method="POST" id="servicios_usuario">
+        <div class="row">
+          <div class="col-sm-10 col-sm-offset-1">
+            <div class="picture-container">
+              <!--Imagen del servicio-->
+              <div class="picture">
+                <img src="assets/images/default-avatar.png" class="picture-src" title="" />
+                <input type="file" id="wizard-services">
+              </div>
+              <h6>Elija una imagen</h6>
+            </div>
+
+            <label>Servicio :</label>
+            <select name="servicios" id="servicios">
+              <option value="ninguno">Ninguno</option>
+              <option value="ninguno">Ninguno</option>
+            </select>
+
+            <button type="submit" class="btn-normal " name="agregar" onclick="">Agregar</button>
+            <br />
+            <br />
+
+            <div>
+              <textarea rows="4" cols="50" readonly name="text_servicios" disabled></textarea>
+            </div>
+            <br />
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+
+  </section>
+  <!--Fin panel para ofrecer los servicios-->
