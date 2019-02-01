@@ -5,15 +5,22 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { SolicitarComponent } from './solicitar/solicitar.component';
 import { BuscarComponent } from './buscar/buscar.component';
+import { ModClaveComponent } from './mod-clave/mod-clave.component';
+import { ModUsuarioComponent } from './mod-usuario/mod-usuario.component';
+import { ModServicioComponent } from './mod-servicio/mod-servicio.component';
 
 
 const appRoutes: Routes = [
   {path: '', component : HomeComponent},
+  {path: 'home', component : HomeComponent},
   {path: 'login', component : LoginComponent},
   {path: 'register', component : RegistroComponent},
   {path: 'buscar', component : BuscarComponent},
   {path: 'registro', component : RegistroComponent},
-  {path: 'solicitar', component : SolicitarComponent},
+  {path: 'config-clave', component : ModClaveComponent},
+  {path: 'config-perfil', component : ModUsuarioComponent},
+  {path: 'servicios', component : ModServicioComponent}
+
 ];
 
 export const appRoutingProviders: any[] = [];

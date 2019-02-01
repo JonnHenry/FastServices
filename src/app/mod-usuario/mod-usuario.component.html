@@ -1,119 +1,140 @@
-<header class="header">
-  <!-- Header Main -->
+<div class="container col-lg-12 col-sm-12 order-1 col-xs-12">
   <br />
   <br />
-  <div class="header_main">
-    <div class="container">
-      <div class="row">
 
-        <!-- Logo -->
-        <div class="col-lg-2 col-sm-2 col-3 order-1 col-xs-2">
-          <div class="logo_container">
-            <div class="logo img-responsive"><a routerLink="/home"><img src="assets/images/fast_services_logo_pagina.png"></a></div>
+  <header class="header">
+    <!-- Header Main -->
+    <div class="header_main">
+      <div class="container">
+        <div class="row">
+
+          <!-- Logo -->
+          <div class="col-lg-2 col-sm-2 col-3 order-1 col-xs-2">
+            <div class="logo_container">
+              <div class="logo img-responsive"><a routerLink="/home"><img src="assets/images/fast_services_logo_pagina.png"></a></div>
+            </div>
           </div>
-        </div>
 
-        <div class="col-lg-6 col-sm-6 order-2 text-lg-left text-right col-xs-6">
-          <div class="header_search">
-            <div class="header_search_content">
+          <div class="col-lg-6 col-sm-6 order-2 text-lg-left text-right col-xs-6">
+            <div class="header_search">
+              <div class="header_search_content">
 
-              <ul class="nav">
-                <li class="nav-item border">
-                  <a class="nav-link active" href="#">
-                    <h4>Home</h4>
-                  </a>
+                <ul class="nav">
+                  <li class="nav-item border">
+                    <a class="nav-link active" href="#">
+                      <h4>Home</h4>
+                    </a>
+                  </li>
+
+                  <li class="nav-item border rounded">
+                    <a class="nav-link" href="#">
+                      <h4>Buscar</h4>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Usuario -->
+          <div class="col-lg-4 col-4 order-lg-3 col-sm-4 order-3 text-lg-left text-right col-xs-4">
+            <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+              <div class="wishlist d-flex flex-row align-items-center justify-content-end">
+                <!--Imagen de l usuario-->
+                <div class="wishlist_icon"><img src="assets/images/user.png" alt="Usuario"></div>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                    aria-expanded="false"></a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" routerLink="/config-clave">Modificar la contraseña</a>
+                    <a class="dropdown-item" routerLink="/config-perfil">Modificar usuario</a>
+                    <a class="dropdown-item" routerLink="/servicios">Servicios</a>
+                    <a class="dropdown-item" routerLink="/home">Cerrar sesión</a>
+                  </div>
                 </li>
-
-                <li class="nav-item border rounded">
-                  <a class="nav-link" href="#">
-                    <h4>Buscar</h4>
-                  </a>
-                </li>
-              </ul>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </header>
 
-        <!-- Usuario -->
-        <div class="col-lg-4 col-4 order-lg-3 col-sm-4 order-3 text-lg-left text-right col-xs-4">
-          <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
-            <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-              <!--Imagen de l usuario-->
-              <div class="wishlist_icon"><img src="assets/images/user.png" alt="Usuario"></div>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                  aria-expanded="false"></a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" routerLink="/configuracion">Configuración</a>
-                  <a class="dropdown-item" routerLink="/home">Cerrar sesión</a>
+  <div class="container col-lg-8 center">
+    <!--Pestaña para modificar el perfil del usuario-->
+    <section class="tab-pane fade show " id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <br />
+      <div>
+        <div class="col-sm-5 col-lg-5 col-md-5 col-md-offset-4">
+          <div style="padding-bottom: 30px;">
+            <div class="center">
+              <h5>Modificar datos del usuario</h5>
+
+              <!--Cambiar la foto del usuario-->
+              <div class="picture-container">
+                <div class="picture">
+                  <img src="assets/images/default-avatar.png" class="picture-src" title="" />
+                  <input type="file" id="wizard-picture">
                 </div>
-              </li>
+                <h6>Elija una imagen</h6>
+              </div>
+
             </div>
+
+            <!--Form para Modificar el usuario-->
+            <form method="POST" id="usuario_datos">
+
+              <div class="form-group">
+                <label>Nombre </label>
+                <input id="firstname" type="text" class="form-control" placeholder="Ingrese su nombre" disabled
+                  required title="Ingrese la primera letra del nombre en mayuscula, sin numeros">
+              </div>
+
+              <div class="form-group">
+                <label>Apellido</label>
+                <input id="lastname" type="text" class="form-control" placeholder="Ingrese su appelido" disabled
+                  required title="Ingrese la primera letra del nombre en mayuscula, sin numeros">
+              </div>
+
+              <div class="form-group">
+                <label>Pais</label>
+                <input type="text" class="form-control" placeholder="Pais del usuario" id="pais" minlength="2" disabled
+                  required title="Ingrese la primera letra del nombre en mayuscula, sin numeros">
+              </div>
+
+              <div class="form-group">
+                <label>Provincia</label>
+                <input type="text" class="form-control" placeholder="Provincia del usuario" id="provincia" minlength="2"
+                  disabled required title="Ingrese la primera letra del nombre en mayuscula, sin numeros">
+              </div>
+
+              <div class="form-group">
+                <label>Ciudad</label><br>
+                <input type="text" class="form-control" placeholder="Ciudad del usuario" id="ciudad" minlength="2"
+                  disabled required title="Ingrese la primera letra del nombre en mayuscula, sin numeros">
+              </div>
+
+              <input type="button" title="Modificar" class="btn-normal" value="Modificar" onclick="return 'true'">
+              <input type="submit" title="Guardar" class="btn-normal" value="Guardar" id="guardar">
+            </form>
           </div>
         </div>
       </div>
-    </div>
+    </section>
+    <!--Fin panel para modificar el usuario -->
+
   </div>
-</header>
 
-<!--Pestaña para modificar el perfil del usuario-->
-<section class="tab-pane fade show " id="profile" role="tabpanel" aria-labelledby="profile-tab">
-  <br />
-  <div>
-    <div class="col-sm-5 col-lg-5 col-md-5 col-md-offset-4">
-      <div style="padding-bottom: 30px;">
-        <div class="center">
-          <h5>Modificar datos del usuario</h5>
+</div>
 
-          <!--Cambiar la foto del usuario-->
-          <div class="picture-container">
-            <div class="picture">
-              <img src="assets/images/default-avatar.png" class="picture-src" title="" />
-              <input type="file" id="wizard-picture">
-            </div>
-            <h6>Elija una imagen</h6>
+  <!-- start footer Area -->
+  <footer class="footer-area ">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-sm-12">
+            <img src="assets/images/fast_services_logo_pagina.png" align="rigth">
+            <p>Todos los derechos reservados 2018-2019</p>
           </div>
-
         </div>
-
-        <!--Form para Modificar el usuario-->
-        <form method="POST" id="usuario_datos">
-
-          <div class="form-group">
-            <label>Nombre </label>
-            <input id="firstname" type="text" class="form-control" placeholder="Ingrese su nombre" disabled required
-              title="Ingrese la primera letra del nombre en mayuscula, sin numeros">
-          </div>
-
-          <div class="form-group">
-            <label>Apellido</label>
-            <input id="lastname" type="text" class="form-control" placeholder="Ingrese su appelido" disabled required
-              title="Ingrese la primera letra del nombre en mayuscula, sin numeros">
-          </div>
-
-          <div class="form-group">
-            <label>Pais</label>
-            <input type="text" class="form-control" placeholder="Pais del usuario" id="pais" minlength="2" disabled
-              required title="Ingrese la primera letra del nombre en mayuscula, sin numeros">
-          </div>
-
-          <div class="form-group">
-            <label>Provincia</label>
-            <input type="text" class="form-control" placeholder="Provincia del usuario" id="provincia" minlength="2"
-              disabled required title="Ingrese la primera letra del nombre en mayuscula, sin numeros">
-          </div>
-
-          <div class="form-group">
-            <label>Ciudad</label><br>
-            <input type="text" class="form-control" placeholder="Ciudad del usuario" id="ciudad" minlength="2" disabled
-              required title="Ingrese la primera letra del nombre en mayuscula, sin numeros">
-          </div>
-
-          <input type="button" title="Modificar" class="btn-normal" value="Modificar" onclick="return 'true'">
-          <input type="submit" title="Guardar" class="btn-normal" value="Guardar" id="guardar">
-        </form>
       </div>
-    </div>
-  </div>
-</section>
-<!--Fin panel para modificar el usuario -->
+    </footer>

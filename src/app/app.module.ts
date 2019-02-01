@@ -10,12 +10,11 @@ import { FormsModule } from '@angular/forms';
 import { routing, appRoutingProviders} from './app-routing.module';
 import { BuscarComponent } from './buscar/buscar.component';
 import { SolicitarComponent } from './solicitar/solicitar.component';
-import { ConfiguracionComponent } from './configuracion/configuracion.component';
 import { ModUsuarioComponent } from './mod-usuario/mod-usuario.component';
-import { ServiciosComponent } from './servicios/servicios.component';
 import { ModClaveComponent } from './mod-clave/mod-clave.component';
 import { ModServicioComponent } from './mod-servicio/mod-servicio.component';
 
+// tslint:disable-next-line:prefer-const
 let config = new AuthServiceConfig([
   {
     id: FacebookLoginProvider.PROVIDER_ID,
@@ -36,9 +35,7 @@ export function provideConfig() {
     LoginComponent,
     BuscarComponent,
     SolicitarComponent,
-    ConfiguracionComponent,
     ModUsuarioComponent,
-    ServiciosComponent,
     ModClaveComponent,
     ModServicioComponent
   ],
