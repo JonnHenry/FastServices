@@ -27,30 +27,35 @@
   <div class="container col-lg-7 col-sm-7 col-xs-7 float-right d-flex flex-column bd-highlight mb-3 borde">
 
     <h5>Ingrese los datos para poder registrarse</h5>
-    <form class="float-none">
+
+
+    <!--Inicio del formulario de registro para las personas-->
+    <form class="float-none" #formRegistro="ngForm" (ngSubmit)="onLogin(formRegistro)" >
       <div class="form-group">
-        <label>Nombre</label>
-        <input type="text" class="form-control" placeholder="Nombre" />
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" name="nombres" [ngModelOptions]="{standalone: true}" placeholder="Nombre" #nombre="ngModel" [(ngModel)]="persona.nombre" required/>
       </div>
 
       <div class="form-group">
-        <label>Apellidos</label>
-        <input type="text" class="form-control" placeholder="Apellidos" />
+        <label for="apellido">Apellido</label>
+        <input type="text" name="apellido" class="form-control" placeholder="Apellidos" [ngModelOptions]="{standalone: true}" #apellido="ngModel" [(ngModel)]="persona.apellido" required />
       </div>
 
       <div class="form-group">
-        <label>Email</label>
-        <input type="email" class="form-control" placeholder="Ingrese su correo" />
+        <label for="email">Email</label>
+        <input type="email" name="email"  class="form-control" placeholder="Ingrese su correo" [ngModelOptions]="{standalone: true}" #correo="ngModel" [(ngModel)]="persona.correo" required/>
       </div>
 
       <div class="form-group">
-        <label>Contraseña</label>
-        <input type="password" class="form-control" placeholder="Ingrese su Contraseña" />
+        <label for="clave">Contraseña</label>
+        <input type="password" name="clave" class="form-control" placeholder="Ingrese su Contraseña" [ngModelOptions]="{standalone: true}" #clave="ngModel" [(ngModel)]="persona.clave" required/>
       </div>
 
-      <button type="submit" class="btn btn-primary">Registrarse</button>
+      <input type="submit" class="btn btn-primary" value="Registrarse"/>
 
     </form>
+
+    <!--Finalizacion del formulario-->
 
   </div>
 

@@ -14,7 +14,7 @@ const appRoutes: Routes = [
   {path: '', component : HomeComponent},
   {path: 'home', component : HomeComponent},
   {path: 'login', component : LoginComponent},
-  {path: 'register', component : RegistroComponent},
+  {path: 'registro', component : RegistroComponent},
   {path: 'buscar', component : BuscarComponent},
   {path: 'registro', component : RegistroComponent},
   {path: 'config-clave', component : ModClaveComponent},

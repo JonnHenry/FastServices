@@ -10,9 +10,20 @@ import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider } fro
 })
 export class RegistroComponent implements OnInit {
 
+  public persona: any;
   private user: SocialUser;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {
+    this.persona = {
+      'nombre' : '',
+      'apellido' : '',
+      'correo' : '',
+      'clave' : '',
+      'urlFoto' : '',
+      'provincia' : '',
+      'ciudad' : ''
+    };
+   }
 
   ngOnInit() {
     this.authService.authState.subscribe((user) => {
@@ -22,5 +33,13 @@ export class RegistroComponent implements OnInit {
 
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  onLogin(registroForm) {
+    console.log(registroForm);
+    if (registroForm.valid){
+    }else{
+      console.log('Formulario no valido')
+    }
   }
 }
