@@ -13,6 +13,7 @@ import { SolicitarComponent } from './solicitar/solicitar.component';
 import { ModUsuarioComponent } from './mod-usuario/mod-usuario.component';
 import { ModClaveComponent } from './mod-clave/mod-clave.component';
 import { ModServicioComponent } from './mod-servicio/mod-servicio.component';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 // tslint:disable-next-line:prefer-const
 let config = new AuthServiceConfig([

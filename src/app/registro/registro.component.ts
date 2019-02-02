@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'angularx-social-login';
 import { SocialUser } from 'angularx-social-login';
+
 import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider } from 'angularx-social-login';
 
 @Component({
@@ -12,6 +13,7 @@ export class RegistroComponent implements OnInit {
 
   public persona: any;
   private user: SocialUser;
+  private 
 
   constructor(private authService: AuthService) {
     this.persona = {
@@ -33,13 +35,21 @@ export class RegistroComponent implements OnInit {
 
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    console.log(this.user)
+    var nomb=this.user.name.split(' ');
+    this.persona.nombre=nomb[0];
+    this.persona.apellido=nomb[1];
+    this.persona.correo=this.user.email;
+    this.persona.urlFoto=this.user.photoUrl;
+    console.log(this.persona)
   }
 
-  onLogin(registroForm) {
-    console.log(registroForm);
-    if (registroForm.valid){
-    }else{
-      console.log('Formulario no valido')
-    }
+  onLogin() { 
+    console.log(this.persona);
+    
+  }
+
+  mostrarClave() {
+    
   }
 }

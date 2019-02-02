@@ -30,28 +30,52 @@
 
 
     <!--Inicio del formulario de registro para las personas-->
-    <form class="float-none" #formRegistro="ngForm" (ngSubmit)="onLogin(formRegistro)" >
+    <form class="float-none" #formNewUser="ngForm" (ngSubmit)="onLogin(formNewUser)" >
+      
       <div class="form-group">
-        <label for="nombre">Nombre</label>
-        <input type="text" class="form-control" name="nombres" [ngModelOptions]="{standalone: true}" placeholder="Nombre" #nombre="ngModel" [(ngModel)]="persona.nombre" required/>
+
+        <label for="nombre">Nombre </label>
+        <input type="text" class="form-control" name="nombre"  placeholder="Nombre"
+         #nombre="ngModel" [(ngModel)]="persona.nombre" required pattern="[a-zA-Z]+"/>
+
+        <!--Para la validacion del campo de registro-->
+        <span *ngIf="nombre.touched && !nombre.valid">
+          <label class="alert alert-danger">Error al ingresar el nombre</label>
+        </span>
       </div>
 
       <div class="form-group">
-        <label for="apellido">Apellido</label>
-        <input type="text" name="apellido" class="form-control" placeholder="Apellidos" [ngModelOptions]="{standalone: true}" #apellido="ngModel" [(ngModel)]="persona.apellido" required />
+        <label for="apellido">Apellido </label>
+        <input type="text" name="apellido" class="form-control" placeholder="Apellidos"  
+        #apellido="ngModel" [(ngModel)]="persona.apellido" required pattern="[a-zA-Z]+"/>
+        <!--Para la validacion del campo de registro-->
+        <span *ngIf="apellido.touched && !apellido.valid">
+          <label class="alert alert-danger">Error al ingresar el apellido</label>
+        </span>
       </div>
 
       <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" name="email"  class="form-control" placeholder="Ingrese su correo" [ngModelOptions]="{standalone: true}" #correo="ngModel" [(ngModel)]="persona.correo" required/>
+        <label for="correo">Email </label>
+        <input type="email" name="correo"  class="form-control" placeholder="Ingrese su correo"  
+        #correo="ngModel" [(ngModel)]="persona.correo" required email/>
+        <!--Para la validacion del campo de registro-->
+        <span *ngIf="correo.touched && !correo.valid">
+          <label class="alert alert-danger">Error al ingresar el correo</label>
+        </span>
       </div>
+
 
       <div class="form-group">
-        <label for="clave">Contraseña</label>
-        <input type="password" name="clave" class="form-control" placeholder="Ingrese su Contraseña" [ngModelOptions]="{standalone: true}" #clave="ngModel" [(ngModel)]="persona.clave" required/>
+        <label for="clave">Contraseña </label>
+        <input type="password" name="clave" class="form-control" placeholder="Ingrese su Contraseña"  
+        #clave="ngModel" [(ngModel)]="persona.clave" required minlength="6"/>
+        <!--Para la validacion del campo de registro-->
+        <span *ngIf="clave.touched && !clave.valid">
+          <label class="alert alert-danger">Error al ingresar la clave</label>
+        </span>
       </div>
 
-      <input type="submit" class="btn btn-primary" value="Registrarse"/>
+      <button type="submit" class="btn btn-success" [disabled]="!formNewUser.form.valid">Registrarse</button>
 
     </form>
 
