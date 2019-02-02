@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'angularx-social-login';
 import { SocialUser } from 'angularx-social-login';
+import { PeticionesService } from '../services/peticiones'
 
 import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider } from 'angularx-social-login';
 
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.css']
+  styleUrls: ['./registro.component.css'],
+  providers: [ PeticionesService ]
 })
 export class RegistroComponent implements OnInit {
 
@@ -15,7 +17,7 @@ export class RegistroComponent implements OnInit {
   private user: SocialUser;
   private 
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,private _peticionesService: PeticionesService) {
     this.persona = {
       'nombre' : '',
       'apellido' : '',
@@ -44,8 +46,16 @@ export class RegistroComponent implements OnInit {
     console.log(this.persona)
   }
 
-  onLogin() { 
+  onLogin(form) { 
     console.log(this.persona);
+    this._peticionesService.addPersona(this.persona).subscribe(
+      response=>{
+        form.reset();
+        alert(response.respuesta);
+      },
+      error=>{
+        console.log(<any>error);
+      });
     
   }
 
