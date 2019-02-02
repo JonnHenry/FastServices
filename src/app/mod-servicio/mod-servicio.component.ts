@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModServicioComponent implements OnInit {
 
-    constructor() { }
+  constructor() { }
 
   ngOnInit() {
 
