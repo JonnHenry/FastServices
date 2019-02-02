@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'angularx-social-login';
 import { SocialUser } from 'angularx-social-login';
-import { PeticionesService } from '../services/peticiones'
+import { PeticionesService } from '../services/peticiones';
+import { Router } from '@angular/router';
 
 import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider } from 'angularx-social-login';
 
@@ -17,7 +18,7 @@ export class RegistroComponent implements OnInit {
   private user: SocialUser;
   private 
 
-  constructor(private authService: AuthService,private _peticionesService: PeticionesService) {
+  constructor(private authService: AuthService,private _peticionesService: PeticionesService,private router:Router) {
     this.persona = {
       'nombre' : '',
       'apellido' : '',
@@ -38,20 +39,23 @@ export class RegistroComponent implements OnInit {
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
     console.log(this.user)
-    var nomb=this.user.name.split(' ');
-    this.persona.nombre=nomb[0];
-    this.persona.apellido=nomb[1];
-    this.persona.correo=this.user.email;
-    this.persona.urlFoto=this.user.photoUrl;
+    var nomb = this.user.name.split(' ');
+    this.persona.nombre = nomb[0];
+    this.persona.apellido = nomb[1];
+    this.persona.correo = this.user.email;
+    this.persona.urlFoto = this.user.photoUrl;
     console.log(this.persona)
   }
 
   onLogin(form) { 
-    console.log(this.persona);
+    console.log('Lo de resultado hasta aqui funciona: '+this.persona);
     this._peticionesService.addPersona(this.persona).subscribe(
       response=>{
+        console.log('Va a resetar el form')
         form.reset();
+        console.log('Va a resetar el form')
         alert(response.respuesta);
+        this.router.navigate(['login']);
       },
       error=>{
         console.log(<any>error);

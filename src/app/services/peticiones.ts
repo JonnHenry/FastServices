@@ -6,22 +6,25 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class PeticionesService{
     public url : string;
+
     constructor(
         public _http: HttpClient
     ){
-        this.url='https://localhost:3000';
+        this.url='http://localhost:3000';
     }
 
     getPersonas(): Observable<any>{
         return this._http.get(this.url+'/personas');
     }
 
+
     addPersona(persona): Observable<any>{
         let params=JSON.stringify(persona);
-        console.log(params)
-        let headers=new HttpHeaders()
-        .set('Content-Type', 'application/json')
-        return this._http.post(this.url+'/personas/nuevo',params,{headers: headers});
+        console.log('Los parametros son:'+
+        params)
+        var headers=new HttpHeaders().set('Content-Type' , 'application/json')
+        console.log('paso')
+        return this._http.post(this.url+'/personas/nuevo',params,{headers : headers});
     }
     
     deletePersona(id): Observable<any>{
