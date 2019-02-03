@@ -43,7 +43,6 @@ export class RegistroComponent implements OnInit {
     this.persona.apellido = nomb[1];
     this.persona.correo = this.user.email;
     this.persona.urlFoto = this.user.photoUrl;
-    console.log(this.persona);
   }
 
   onLogin(form) {
@@ -62,7 +61,4 @@ export class RegistroComponent implements OnInit {
 
   }
 
-  mostrarClave() {
-
-  }
 }

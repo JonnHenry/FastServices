@@ -7,7 +7,8 @@ import { PeticionesService } from '../services/peticiones';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [ PeticionesService ]
 })
 export class LoginComponent implements OnInit {
   public persona: any;
@@ -27,11 +28,9 @@ export class LoginComponent implements OnInit {
     console.log(this.persona);
     this._peticionesService.login(this.persona).subscribe(
       response => {
-        console.log('Va a resetar el form');
         form.reset();
-        console.log('Va a resetar el form');
-        alert(response.respuesta);
-        this.router.navigate(['login']);
+        console.log(response);
+        this.router.navigate(['buscar']);
       },
       error => {
         console.log(<any>error);

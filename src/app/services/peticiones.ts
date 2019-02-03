@@ -27,7 +27,7 @@ export class PeticionesService {
     login(datos): Observable<any> {
       const params = JSON.stringify(datos);
       const headers = new HttpHeaders().set('Content-Type' , 'application/json');
-      return this._http.post(this.url + '/login/', params, { headers : headers });
+      return this._http.post(this.url + '/login/persona', params, { headers : headers });
   }
 
     deletePersona(id): Observable<any> {
