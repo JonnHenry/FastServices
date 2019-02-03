@@ -1,55 +1,68 @@
 <div class="imagen">
-    <div class="container header_login col-lg-12 col-xs-12 col-sm-12">
-        <div class="row justify-content-center ">
-          <div class="col-sm-6 col-md-4">
-            <div class="card text-center">
-              <div class="card-header">
-                <div>
-                  <img class="center-img" src="assets/images/fast_services_logo_pagina.png">
-                  <br />
-                  <h5> Inicie sesión para continuar</h5>
+  <div class="container header_login col-lg-12 col-xs-12 col-sm-12">
+    <div class="row justify-content-center ">
+      <div class="col-sm-6 col-md-4">
+        <div class="card text-center">
+          <div class="card-header">
+            <div>
+              <img class="center-img" src="assets/images/fast_services_logo_pagina.png">
+              <br />
+              <h5> Inicie sesión para continuar</h5>
+            </div>
+          </div>
+          <div class="card-body text-center">
+
+            <form #formLogin="ngForm" (ngSubmit)="onLogin(formLogin)">
+              <div class="row center">
+                <div class="col-sm-12 col-md-10 ">
+                  <div class="input-group mb-2">
+
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><img src="assets/images/correo.png"></div>
+                    </div>
+                    <input type="email" name="correo" class="form-control" placeholder="Ingrese su correo" #correo="ngModel"
+                      [(ngModel)]="persona.correo" required email />
+
+                  </div>
+                  <span *ngIf="correo.touched && !correo.valid">
+                    <label class="alert alert-danger input-group">Error al ingresar el correo</label>
+                  </span>
+
+                  <!--Form para el ingreso de la contraseña-->
+                  <div class="form-group ">
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+
+                        <div class="input-group-text"><img src="assets/images/clave.png"></div>
+
+                      </div>
+                      <input type="password" class="form-control" name="clave" placeholder="Contraseña" #clave="ngModel" [(ngModel)]="persona.clave"
+                        required minlength="6">
+                    </div>
+                    <span *ngIf="clave.touched && !clave.valid">
+                        <label class="alert alert-danger input-group">No se ha ingresado la contraseña</label>
+                      </span>
+                  </div>
+
+
+                  <!--Boton para el inicio de login-->
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!formLogin.form.valid">Ingresar</button>
+                  </div>
+                  <!--Fin del boton login-->
+
                 </div>
               </div>
-              <div class="card-body text-center">
 
-                <form role="form" method="POST" onsubmit="return 'true'">
-                  <fieldset>
-                    <div class="row center">
-                      <div class="col-sm-12 col-md-10 ">
+            </form>
 
-                        <div class="form-group center" >
-                          <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                              <div class="input-group-text"><img src="assets/images/correo.png"> </div>
-                            </div>
-                            <input type="email" class="form-control" placeholder="Correo" #email name="email" required>
-                          </div>
-                        </div>
-
-                        <div class="form-group ">
-                            <div class="input-group mb-2">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text"><img src="assets/images/clave.png"></div>
-                              </div>
-                              <input class="form-control" placeholder="Contraseña" #password name="password" type="password" value=""
-                              required >
-                            </div>
-                          </div>
-                        <div class="form-group">
-                          <input type="submit" (click)="Login(email.value,password.value)" class="btn btn-lg btn-primary btn-block" value="Ingresar" id="login-button">
-                        </div>
-                      </div>
-                    </div>
-                  </fieldset>
-                </form>
-
-              </div>
-              <div class="card-footer">
-                No tienes cuenta! <a routerLink="/registro"> Registrese aqui </a>
-              </div>
-            </div>
+          </div>
+          <div class="card-footer">
+            No tienes cuenta! <a routerLink="/registro"> Registrese aqui </a>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
 </div>

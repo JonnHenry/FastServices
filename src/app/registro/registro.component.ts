@@ -16,9 +16,8 @@ export class RegistroComponent implements OnInit {
 
   public persona: any;
   private user: SocialUser;
-  private 
 
-  constructor(private authService: AuthService,private _peticionesService: PeticionesService,private router:Router) {
+  constructor(private authService: AuthService, private _peticionesService: PeticionesService, private router: Router) {
     this.persona = {
       'nombre' : '',
       'apellido' : '',
@@ -38,32 +37,32 @@ export class RegistroComponent implements OnInit {
 
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-    console.log(this.user)
-    var nomb = this.user.name.split(' ');
+    console.log(this.user);
+    const nomb = this.user.name.split(' ');
     this.persona.nombre = nomb[0];
     this.persona.apellido = nomb[1];
     this.persona.correo = this.user.email;
     this.persona.urlFoto = this.user.photoUrl;
-    console.log(this.persona)
+    console.log(this.persona);
   }
 
-  onLogin(form) { 
-    console.log('Lo de resultado hasta aqui funciona: '+this.persona);
+  onLogin(form) {
+    console.log('Lo de resultado hasta aqui funciona: ' + this.persona);
     this._peticionesService.addPersona(this.persona).subscribe(
-      response=>{
-        console.log('Va a resetar el form')
+      response => {
+        console.log('Va a resetar el form');
         form.reset();
-        console.log('Va a resetar el form')
+        console.log('Va a resetar el form');
         alert(response.respuesta);
         this.router.navigate(['login']);
       },
-      error=>{
+      error => {
         console.log(<any>error);
       });
-    
+
   }
 
   mostrarClave() {
-    
+
   }
 }
