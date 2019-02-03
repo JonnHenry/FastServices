@@ -46,7 +46,6 @@
                   <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                     aria-expanded="false"></a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" routerLink="/config-clave">Modificar la contraseña</a>
                     <a class="dropdown-item" routerLink="/config-perfil">Modificar usuario</a>
                     <a class="dropdown-item" routerLink="/servicios">Servicios</a>
                     <a class="dropdown-item" routerLink="/home">Cerrar sesión</a>
@@ -82,41 +81,43 @@
             </div>
 
             <!--Form para Modificar el usuario-->
-            <form method="POST" id="usuario_datos">
+            <form class="float-none" #formModUser="ngForm" (ngSubmit)="onUpdate(formModUser)" >
 
-              <div class="form-group">
-                <label>Nombre </label>
-                <input id="firstname" type="text" class="form-control" placeholder="Ingrese su nombre" disabled
-                  required title="Ingrese la primera letra del nombre en mayuscula, sin numeros">
-              </div>
+                <div class="form-group">
 
-              <div class="form-group">
-                <label>Apellido</label>
-                <input id="lastname" type="text" class="form-control" placeholder="Ingrese su appelido" disabled
-                  required title="Ingrese la primera letra del nombre en mayuscula, sin numeros">
-              </div>
+                  <label for="nombre">Nombre </label>
+                  <input type="text" class="form-control" name="nombre"  placeholder="Nombre"
+                   #nombre="ngModel" [(ngModel)]="persona.nombre" required pattern="[a-zA-Z]+"/>
 
-              <div class="form-group">
-                <label>Pais</label>
-                <input type="text" class="form-control" placeholder="Pais del usuario" id="pais" minlength="2" disabled
-                  required title="Ingrese la primera letra del nombre en mayuscula, sin numeros">
-              </div>
+                  <!--Para la validacion del campo de registro-->
+                  <span *ngIf="nombre.touched && !nombre.valid">
+                    <label class="alert alert-danger">Error al ingresar el nombre</label>
+                  </span>
+                </div>
 
-              <div class="form-group">
-                <label>Provincia</label>
-                <input type="text" class="form-control" placeholder="Provincia del usuario" id="provincia" minlength="2"
-                  disabled required title="Ingrese la primera letra del nombre en mayuscula, sin numeros">
-              </div>
+                <div class="form-group">
+                  <label for="apellido">Apellido </label>
+                  <input type="text" name="apellido" class="form-control" placeholder="Apellidos"
+                  #apellido="ngModel" [(ngModel)]="persona.apellido" required pattern="[a-zA-Z]+"/>
+                  <!--Para la validacion del campo de registro-->
+                  <span *ngIf="apellido.touched && !apellido.valid">
+                    <label class="alert alert-danger">Error al ingresar el apellido</label>
+                  </span>
+                </div>
 
-              <div class="form-group">
-                <label>Ciudad</label><br>
-                <input type="text" class="form-control" placeholder="Ciudad del usuario" id="ciudad" minlength="2"
-                  disabled required title="Ingrese la primera letra del nombre en mayuscula, sin numeros">
-              </div>
+                <div class="form-group">
+                  <label for="clave">Contraseña </label>
+                  <input type="password" name="clave" class="form-control" placeholder="Ingrese su nueva Contraseña"
+                  #clave="ngModel" [(ngModel)]="persona.clave" required minlength="6"/>
+                  <!--Para la validacion del campo de registro-->
+                  <span *ngIf="clave.touched && !clave.valid">
+                    <label class="alert alert-danger">Error al ingresar la clave</label>
+                  </span>
+                </div>
 
-              <input type="button" title="Modificar" class="btn-normal" value="Modificar" onclick="return 'true'">
-              <input type="submit" title="Guardar" class="btn-normal" value="Guardar" id="guardar">
-            </form>
+                <button type="submit" class="btn btn-success" [disabled]="!formModUser.form.valid">Modificar</button>
+
+              </form>
           </div>
         </div>
       </div>

@@ -11,7 +11,6 @@ import { routing, appRoutingProviders} from './app-routing.module';
 import { BuscarComponent } from './buscar/buscar.component';
 import { SolicitarComponent } from './solicitar/solicitar.component';
 import { ModUsuarioComponent } from './mod-usuario/mod-usuario.component';
-import { ModClaveComponent } from './mod-clave/mod-clave.component';
 import { ModServicioComponent } from './mod-servicio/mod-servicio.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -37,7 +36,6 @@ export function provideConfig() {
     BuscarComponent,
     SolicitarComponent,
     ModUsuarioComponent,
-    ModClaveComponent,
     ModServicioComponent
   ],
   imports: [
