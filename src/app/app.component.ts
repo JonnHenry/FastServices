@@ -1,4 +1,7 @@
-import { Component, Injectable } from '@angular/core';
+import {
+  Component,
+  Injectable
+} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -15,18 +18,33 @@ export class AppComponent {
 
   }
 
-  grabarLocalStrorage(llave, objetoGrabarNavegador) {
+  grabarSesion(objetoGrabarNavegador) {
     // La llave es como se puede recuperar el objeto
     // JSON.stringify() lo que hace es que convierte u objeto Json en un formato de texto
     // Para volverlo a como estaba se emplea JSON.parse()
-    localStorage.setItem( llave , JSON.stringify(objetoGrabarNavegador));
+    localStorage.setItem('sesion', JSON.stringify(objetoGrabarNavegador));
   }
 
-  obtenerLocalStorage(llave) {
+  obtenerSesion() {
+    if (localStorage.getItem('sesion') === 'Null') {
+      return null;
+    } else {
+      this.almacen = JSON.parse(localStorage.getItem('sesion'));
+      return this.almacen;
+    }
     // La llave es para poder obtener los valores que esta almacenados en loca storage
     // Se debe de recuperar los valore convertidos en JSON
-    this.almacen = JSON.parse(localStorage.getItem(llave));
-    return this.almacen;
   }
 
+  cerrarSesion() {
+    localStorage.setItem('sesion', 'Null');
+  }
+
+  iniciadaSesion() {
+    if (localStorage.getItem('sesion') === 'Null') { // Retorna true si hay iniciada una sesion, false en caso contrario
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

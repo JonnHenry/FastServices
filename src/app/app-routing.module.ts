@@ -17,8 +17,8 @@ const appRoutes: Routes = [
   {path: 'buscar', component : BuscarComponent},
   {path: 'registro', component : RegistroComponent},
   {path: 'config-perfil', component : ModUsuarioComponent},
-  {path: 'servicios', component : ModServicioComponent}
-
+  {path: 'servicios', component : ModServicioComponent},
+  {path: 'solicitar', component : ModServicioComponent}
 ];
 
 export const appRoutingProviders: any[] = [];

@@ -45,10 +45,9 @@
                   <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                     aria-expanded="false"></a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" routerLink="/config-clave">Modificar la contraseña</a>
                     <a class="dropdown-item" routerLink="/config-perfil">Modificar usuario</a>
                     <a class="dropdown-item" routerLink="/servicios">Servicios</a>
-                    <a class="dropdown-item" routerLink="/home">Cerrar sesión</a>
+                    <input type="button" class="dropdown-item" value="Cerrar sesion" (click)="cerrarSesion()">
                   </div>
                 </li>
               </div>
@@ -119,45 +118,48 @@
 
 <div>
   <button onclick="findMe()">Mostrar ubicación</button>
-	<div id="map"></div>
-	
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4G-SMQ8Ik2JBbt-sBSGMVtRasrwpckYE"></script>
+  <div id="map"></div>
 
-	<script>
-		function findMe(){
-			var output = document.getElementById('map');
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4G-SMQ8Ik2JBbt-sBSGMVtRasrwpckYE"></script>
 
-			// Verificar si soporta geolocalizacion
-			if (navigator.geolocation) {
-				output.innerHTML = "<p>Geolocalizacion Activa</p>";
-			}else{
-				output.innerHTML = "<p>Tu navegador no soporta Geolocalizacion</p>";
-			}
+  <script>
+    function findMe() {
+      var output = document.getElementById('map');
 
-			//Obtenemos latitud y longitud
-			function localizacion(posicion){
+      // Verificar si soporta geolocalizacion
+      if (navigator.geolocation) {
+        output.innerHTML = "<p>Geolocalizacion Activa</p>";
+      } else {
+        output.innerHTML = "<p>Tu navegador no soporta Geolocalizacion</p>";
+      }
 
-				var latitude = posicion.coords.latitude;
-				var longitude = posicion.coords.longitude;
-				
+      //Obtenemos latitud y longitud
+      function localizacion(posicion) {
 
-				var imgURL = "https://maps.googleapis.com/maps/api/staticmap?center="+latitude+","+longitude+"&size=600x300&markers=color:red%7C"+latitude+","+longitude+"&key=AIzaSyA4G-SMQ8Ik2JBbt-sBSGMVtRasrwpckYE";
+        var latitude = posicion.coords.latitude;
+        var longitude = posicion.coords.longitude;
 
-				
-				
 
-				output.innerHTML ="<img src='"+imgURL+"'>";
+        var imgURL = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude +
+          "&size=600x300&markers=color:red%7C" + latitude + "," + longitude +
+          "&key=AIzaSyA4G-SMQ8Ik2JBbt-sBSGMVtRasrwpckYE";
 
-				//output.innerHTML ="<p>Latitud: " + latitude+"<br>Longitud:"+longitude+"</p>";
-			}
 
-			function error(){
-				output.innerHTML = "<p>No se pudo obtener tu ubicación</p>";
-			}
 
-			navigator.geolocation.getCurrentPosition(localizacion,error);
-		}
-	</script>
+
+        output.innerHTML = "<img src='" + imgURL + "'>";
+
+        //output.innerHTML ="<p>Latitud: " + latitude+"<br>Longitud:"+longitude+"</p>";
+      }
+
+      function error() {
+        output.innerHTML = "<p>No se pudo obtener tu ubicación</p>";
+      }
+
+      navigator.geolocation.getCurrentPosition(localizacion, error);
+    }
+
+  </script>
 
 </div>
 

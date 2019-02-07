@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
+import { Router } from '@angular/router';
 import { PeticionesService } from '../services/peticiones';
 
 @Component({
@@ -14,20 +15,26 @@ export class ModUsuarioComponent implements OnInit {
 
   public persona: any;
 
-  constructor(private appComponent: AppComponent, private _peticionesService: PeticionesService) {
-    this.persona = appComponent.obtenerLocalStorage('sesion');
-    this.persona.clave = '';
+  constructor(private appComponent: AppComponent, private _peticionesService: PeticionesService, private router: Router) {
+    if ( this.appComponent.iniciadaSesion() && this.appComponent.obtenerSesion() !== null ) {
+      this.persona = appComponent.obtenerSesion();
+      this.persona.clave = '';
+    }
   }
 
   ngOnInit() {
   }
 
+  cerrarSesion() {
+    this.appComponent.cerrarSesion();
+    this.router.navigate(['login']);
+  }
   onUpdate(form) {
     // El correo es el id
     this._peticionesService.updatePersona(this.persona, this.persona.correo).subscribe(
       response => {
         form.reset();
-        this.appComponent.grabarLocalStrorage('sesion', JSON.stringify(response));
+        this.appComponent.grabarSesion(JSON.stringify(response));
         alert('Los datos fueron actualizados correctamente');
       },
       error => {

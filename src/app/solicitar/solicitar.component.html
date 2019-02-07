@@ -48,10 +48,9 @@
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                       aria-expanded="false"></a>
                     <div class="dropdown-menu">
-                      <a class="dropdown-item" routerLink="/config-clave">Modificar la contraseña</a>
                       <a class="dropdown-item" routerLink="/config-perfil">Modificar usuario</a>
                       <a class="dropdown-item" routerLink="/servicios">Servicios</a>
-                      <a class="dropdown-item" routerLink="/home">Cerrar sesión</a>
+                      <input type="button" class="dropdown-item" value="Cerrar sesion" (click)="cerrarSesion()">
                     </div>
                   </li>
                 </div>

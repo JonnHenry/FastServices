@@ -2,6 +2,8 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import { AppComponent } from '../app.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-solicitar',
@@ -14,8 +16,13 @@ import {
 })
 export class SolicitarComponent implements OnInit {
 
-  constructor() {}
+  constructor(private appComponent: AppComponent,  private router: Router) {}
 
   ngOnInit() {}
+
+  cerrarSesion() {
+    this.appComponent.cerrarSesion();
+    this.router.navigate(['login']);
+  }
 
 }

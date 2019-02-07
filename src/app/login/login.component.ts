@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PeticionesService } from '../services/peticiones';
 import { AppComponent } from '../app.component';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 
 @Component({
@@ -20,9 +21,13 @@ export class LoginComponent implements OnInit {
       'correo' : '',
       'clave' : ''
     };
+
   }
 
   ngOnInit() {
+    if ( this.appComponent.iniciadaSesion() && this.appComponent.obtenerSesion() !== null ) {
+      this.router.navigate(['buscar']);
+    }
   }
 
   onLogin(form) {
@@ -32,7 +37,7 @@ export class LoginComponent implements OnInit {
         if ( response !== null) {
           form.reset();
           // Se tiene al informacion acerca del usuario en response
-          this.appComponent.grabarLocalStrorage('sesion', response);
+          this.appComponent.grabarSesion(response);
           // Grabada la sesion del usuario en el navegador con this.appComponent.grabarLocalStrorage;
           this.router.navigate(['buscar']);
         } else {
@@ -43,5 +48,4 @@ export class LoginComponent implements OnInit {
         console.log(<any>error);
       });
   }
-
 }
