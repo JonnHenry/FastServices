@@ -7,6 +7,7 @@ import { SolicitarComponent } from './solicitar/solicitar.component';
 import { BuscarComponent } from './buscar/buscar.component';
 import { ModUsuarioComponent } from './mod-usuario/mod-usuario.component';
 import { ModServicioComponent } from './mod-servicio/mod-servicio.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 const appRoutes: Routes = [
@@ -18,7 +19,9 @@ const appRoutes: Routes = [
   {path: 'registro', component : RegistroComponent},
   {path: 'config-perfil', component : ModUsuarioComponent},
   {path: 'servicios', component : ModServicioComponent},
-  {path: 'solicitar', component : ModServicioComponent}
+  {path: 'solicitar', component : SolicitarComponent},
+  {path: 'chatUser', component : ChatComponent}
+
 ];
 
 export const appRoutingProviders: any[] = [];
