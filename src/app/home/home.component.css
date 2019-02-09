@@ -37,3 +37,17 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+
+table{
+    width: 100%;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.fb-comment{
+    width: 100%;
+    align-content: center;
+    align-items: center;
+  }
+
