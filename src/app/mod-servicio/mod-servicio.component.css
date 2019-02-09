@@ -1,10 +1,7 @@
 #mapa {
     height: 300px;
-    width: 240px;  
+    width: 100%;  
 }
-
-tr {
-    height: 300px;
-    width: 240px;  
-    text-align: center;
-  }
+#cuerpo{
+text-align: center;
+}

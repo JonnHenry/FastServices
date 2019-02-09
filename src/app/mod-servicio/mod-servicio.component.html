@@ -104,9 +104,21 @@
               <br />
 
               <div>
-                <textarea rows="4" cols="50" readonly name="text_servicios" disabled></textarea>
+                <textarea rows="4" cols="50" class="form-control" readonly name="text_servicios" disabled></textarea>
               </div>
               <br />
+            </div>
+          </div>
+        </form>
+        <form action="configuracion.html" method="POST" id="cuerpo">
+          <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+              <button class="form-control btn btn-primary" (click)="findMe()"> Mostrar Ubicacion </button>
+              <div>{{ubicaciones.city}} </div>
+              <div>{{ubicaciones.region}} </div>
+              <div>{{ubicaciones.country_name}} </div>
+              <div id="map"></div>
+              <div id="mapa"></div>
             </div>
           </div>
         </form>
@@ -118,23 +130,12 @@
     <!--Fin panel para ofrecer los servicios-->
 
   </div>
-
   
 
-
 </div>
-<button class="btn btn-primary" name="agregar" (click)="findMe()"> Mostrar Ubicacion </button>
-<table >
-  <tr>
-      <th>
-        <div>{{ubicaciones.city}} </div>
-        <div>{{ubicaciones.region}} </div>
-        <div>{{ubicaciones.country_name}} </div>
-        <div id="map"></div>
-        <div id="mapa"></div>
-    </th>
-  </tr>
-</table>
+
+
+
 <!-- start footer Area -->
 <footer class="footer-area ">
   <div class="container">
