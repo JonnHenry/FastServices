@@ -42,4 +42,12 @@ export class PeticionesService {
         return this._http.put(this.url + '/personas/' + id , params, {headers: headers});
     }
 
+    // Servicios
+    addServicio(servicio): Observable<any> {// Agregar un nuevo servicio
+      // /servicio/nuevo
+      const params = JSON.stringify(servicio);
+      const headers = new HttpHeaders().set('Content-Type' , 'application/json');
+      return this._http.post(this.url + '/servicio/nuevo', params, { headers : headers });
+  }
+
 }

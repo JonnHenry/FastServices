@@ -6,11 +6,13 @@ import * as Leaflet from 'leaflet';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
+import { PeticionesService } from '../services/peticiones';
 
 @Component({
   selector: 'app-mod-servicio',
   templateUrl: './mod-servicio.component.html',
   styleUrls: ['./mod-servicio.component.css'],
+  providers: [ PeticionesService ]
 })
 export class ModServicioComponent implements OnInit {
   public ubicaciones = [];
@@ -20,27 +22,41 @@ export class ModServicioComponent implements OnInit {
   public uploadPercent: Observable<number>;
   public urlImage: Observable<string>;
   public persona: any;
+  public agregarServicio: any;
   public fileUrl = ''; // Url de la imagen que se desea cargar (estq url es del equipo del usuario)
 
   constructor(private router: Router,
     private appComponent: AppComponent,
     private _ubicacionService: UbicacionService,
-    private storage: AngularFireStorage) {
+    private storage: AngularFireStorage,
+    private _peticionesService: PeticionesService) {
+
+    this.agregarServicio = {
+      descripcionServicio: ''
+    };
+
       if ( this.appComponent.iniciadaSesion() && this.appComponent.obtenerSesion() !== null ) {
         this.persona = appComponent.obtenerSesion();
       }
+
+
     }
 
   ngOnInit() {
     // Rellenar los servicios que ofrece
+
     this.findMe();
   }
+
+  pedirSolServ(formLogin) {
+    console.log('Muestra un valor');
+  }
+
 
   onUpload() {
     if ( this.fileUrl === '' || this.servicioSelecionado === '') {
       alert('Error no hay ninguna imagen para subir');
     } else {
-      // console.log('subir', e.target.files[0]);
     const id = Math.random().toString(36).substring(2);
     const filePath = 'servicios/' + this.persona.correo + this.servicioSelecionado;
     const ref = this.storage.ref(filePath);
@@ -51,7 +67,6 @@ export class ModServicioComponent implements OnInit {
     this.fileUrl = '';
     alert('Imagen subida con exito!');
     }
-
   }
 
   onSelectFile(event) {
@@ -66,6 +81,7 @@ export class ModServicioComponent implements OnInit {
       };
     }
   }
+
 
   cerrarSesion() {
     this.appComponent.cerrarSesion();
@@ -104,7 +120,7 @@ export class ModServicioComponent implements OnInit {
 
     function drawMap(lat, lon) {
       const mapa = Leaflet.map('mapa').setView([lat, lon], 15);
-      Leaflet.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      Leaflet.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: 'Ubicacion',
         maxZoom: 20,
         minZoom: 4

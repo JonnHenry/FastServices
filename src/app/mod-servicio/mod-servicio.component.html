@@ -21,19 +21,19 @@
                 <ul class="nav">
                   <li class="nav-item border">
                     <a class="nav-link active" href="#">
-                      <h4>Home</h4>
+                      <h4 class="text-primary">Home</h4>
                     </a>
                   </li>
 
                   <li class="nav-item border rounded">
                     <a class="nav-link" href="#">
-                      <h4>Buscar</h4>
+                      <h4 class="text-primary">Buscar</h4>
                     </a>
                   </li>
 
                   <li class="nav-item border rounded">
                     <a class="nav-link" href="http://localhost:6677/">
-                      <h4>Chat</h4>
+                      <h4 class="text-primary">Chat</h4>
                     </a>
                   </li>
 
@@ -118,15 +118,19 @@
         <div class="rounded border col-lg-12 float-left col-xl-12 col-md-12 p-3 mb-2 bg-warning text-dark">
           <br />
           <h3 class="text-success">No encuentras el servicio que deseas ofrecer, puedes agregarlo!</h3>
-          <form>
+          <form #formSolServicio="ngForm" (ngSubmit)="pedirSolServ(formSolServicio)">
             <br />
             <div class="form-group">
-              <label class="h6" for="servicioAgregar">Servicio</label>
+              <label class="h6" for="servicioAdd">Servicio</label>
               <br />
-              <input type="password" class="form-control" id="servicioAgregar" placeholder="Servicio a agregar">
+              <input type="text" class="form-control" name="servicioAdd" placeholder="Servicio a agregar"
+              [(ngModel)]="agregarServicio.descripcionServicio" #servicioAdd="ngModel" required >
+              <span *ngIf="servicioAdd.touched && !servicioAdd.valid">
+                  <label class="alert alert-danger">Error al ingresar datos en el campo</label>
+                </span>
             </div>
           </form>
-          <button type="submit" class="btn btn-primary">Agregar servicio</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!formSolServicio.form.valid">Agregar a la lista de servicios</button>
           <br />
           <br />
         </div>
