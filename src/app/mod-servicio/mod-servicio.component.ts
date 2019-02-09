@@ -32,24 +32,23 @@ export class ModServicioComponent implements OnInit {
     private _peticionesService: PeticionesService) {
 
     this.agregarServicio = {
-      descripcionServicio: ''
+      descripcionServicio: 'Hola esto es de prueba'
     };
 
       if ( this.appComponent.iniciadaSesion() && this.appComponent.obtenerSesion() !== null ) {
         this.persona = appComponent.obtenerSesion();
       }
 
-
     }
+    // fin constructor
 
   ngOnInit() {
     // Rellenar los servicios que ofrece
-
     this.findMe();
   }
 
-  pedirSolServ(formLogin) {
-    console.log('Muestra un valor');
+  pedirSolServ(formSolServicio) {
+    alert('Esto es un mensaje de prueba');
   }
 
 
@@ -74,14 +73,12 @@ export class ModServicioComponent implements OnInit {
       const reader = new FileReader();
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
-
       // tslint:disable-next-line:no-shadowed-variable
       reader.onload = (event: any) => { // called once readAsDataURL is completed
         this.fileUrl = event.target.result;
       };
     }
   }
-
 
   cerrarSesion() {
     this.appComponent.cerrarSesion();
@@ -93,14 +90,12 @@ export class ModServicioComponent implements OnInit {
     this._ubicacionService.getUbicacion()
   .subscribe(data => this.ubicaciones = data);
 
-
     // Verificar si soporta geolocalizacion
     if (navigator.geolocation) {
       output.innerHTML = '<p> Geolocalizacion Activa </p>';
     } else {
       output.innerHTML = '<p>Tu navegador no soporta Geolocalizacion</p>';
     }
-
 
     // Obtenemos latitud y longitud
     function localizacion(posicion) {

@@ -118,7 +118,7 @@
         <div class="rounded border col-lg-12 float-left col-xl-12 col-md-12 p-3 mb-2 bg-warning text-dark">
           <br />
           <h3 class="text-success">No encuentras el servicio que deseas ofrecer, puedes agregarlo!</h3>
-          <form #formSolServicio="ngForm" (ngSubmit)="pedirSolServ(formSolServicio)">
+          <form #formSolServicio="ngForm" (ngSubmit)="pedirSolServ(formSolServicio)"><!--button type="submit" class="btn btn-success"-->
             <br />
             <div class="form-group">
               <label class="h6" for="servicioAdd">Servicio</label>
@@ -130,7 +130,7 @@
                 </span>
             </div>
           </form>
-          <button type="submit" class="btn btn-primary" [disabled]="!formSolServicio.form.valid">Agregar a la lista de servicios</button>
+          <button type="submit" class="btn btn-success" [disabled]="!formSolServicio.form.valid">Agregar a la lista de servicios</button>
           <br />
           <br />
         </div>
