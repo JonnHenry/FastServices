@@ -71,6 +71,6 @@ export class ModServicioComponent implements OnInit {
 
       mapa.on('locationerror', onLocationError);
     }
-    navigator.geolocation.getCurrentPosition(localizacion,error);
+    navigator.geolocation.getCurrentPosition(localizacion, error);
   }
 }
