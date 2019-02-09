@@ -14,6 +14,8 @@ import { ModUsuarioComponent } from './mod-usuario/mod-usuario.component';
 import { ModServicioComponent } from './mod-servicio/mod-servicio.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ChatComponent } from './chat/chat.component';
+import { UbicacionComponent } from './ubicacion/ubicacion.component';
+import { UbicacionService } from './ubicacion/ubicacion.service';
 
 // tslint:disable-next-line:prefer-const
 let config = new AuthServiceConfig([
@@ -38,7 +40,8 @@ export function provideConfig() {
     SolicitarComponent,
     ModUsuarioComponent,
     ModServicioComponent,
-    ChatComponent
+    ChatComponent,
+    UbicacionComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,7 @@ export function provideConfig() {
     HttpClientModule,
     SocialLoginModule
   ],
-  providers: [
+  providers: [UbicacionService,
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig,
