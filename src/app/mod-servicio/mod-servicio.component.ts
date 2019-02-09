@@ -33,10 +33,11 @@ export class ModServicioComponent implements OnInit {
 
   ngOnInit() {
     // Rellenar los servicios que ofrece
+    this.findMe();
   }
 
   onUpload() {
-    if ( this.fileUrl === '' || this.servicioSelecionado === 'Ninguno') {
+    if ( this.fileUrl === '' || this.servicioSelecionado === '') {
       alert('Error no hay ninguna imagen para subir');
     } else {
       // console.log('subir', e.target.files[0]);
@@ -91,7 +92,7 @@ export class ModServicioComponent implements OnInit {
       const latitude = posicion.coords.latitude;
       const longitude = posicion.coords.longitude;
 
-      output.innerHTML = '<div>Lat: ' + latitude + ', Long: ' + longitude + '</div>';
+      output.innerHTML = '<label>Lat: <i>' + latitude + '</i>, Long: <i/>' + longitude + '<i/></label>';
 
 
       drawMap(latitude, longitude);
@@ -105,14 +106,13 @@ export class ModServicioComponent implements OnInit {
       const mapa = Leaflet.map('mapa').setView([lat, lon], 15);
       Leaflet.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: 'Ubicacion',
-        maxZoom: 18,
-        minZoom: 6
+        maxZoom: 20,
+        minZoom: 4
       }).addTo(mapa);
       Leaflet.marker([lat, lon]).addTo(mapa)
       .bindPopup('Mi Ubicación')
       .openPopup();
 
-      // alert on location error
       function onLocationError(e) {
         alert(e.message);
       }
