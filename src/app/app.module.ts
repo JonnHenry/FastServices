@@ -16,6 +16,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ChatComponent } from './chat/chat.component';
 import { UbicacionComponent } from './ubicacion/ubicacion.component';
 import { UbicacionService } from './ubicacion/ubicacion.service';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { environment } from '../environments/environment';
 
 // tslint:disable-next-line:prefer-const
 let config = new AuthServiceConfig([
@@ -48,7 +51,9 @@ export function provideConfig() {
     FormsModule,
     routing,
     HttpClientModule,
-    SocialLoginModule
+    SocialLoginModule,
+    AngularFireModule.initializeApp(environment.config),
+    AngularFireStorageModule
   ],
   providers: [UbicacionService,
     {

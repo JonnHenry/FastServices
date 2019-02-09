@@ -3,6 +3,7 @@ import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
 import { UbicacionService } from '../ubicacion/ubicacion.service';
 import * as Leaflet from 'leaflet';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-mod-servicio',
@@ -12,9 +13,13 @@ import * as Leaflet from 'leaflet';
 export class ModServicioComponent implements OnInit {
   public ubicaciones = [];
   private title: string;
+  uploadPercent: Observable<number>;
+  urlImage: Observable<string>;
 
   constructor(private router: Router,
-    private appComponent: AppComponent, private _ubicacionService: UbicacionService) {
+    private appComponent: AppComponent,
+    private _ubicacionService: UbicacionService,
+    private storage: AngularFireStorage) {
      }
 
   ngOnInit() {

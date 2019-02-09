@@ -46,7 +46,7 @@
           <div class="col-lg-4 col-4 order-lg-3 col-sm-4 order-3 text-lg-left text-right col-xs-4">
             <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
               <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-                <!--Imagen de l usuario-->
+                <!--Imagen de l usuario parte superior-->
                 <div class="wishlist_icon"><img src="assets/images/user.png" alt="Usuario"></div>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
@@ -64,86 +64,61 @@
       </div>
     </div>
   </header>
+  <br />
 
 
-  <div class="container col-lg-6 center">
-    <!--Pestaña para modificar el perfil del usuario-->
-    <section class="tab-pane fade show" id="service" role="tabpanel" aria-labelledby="service-tab">
-      <br />
+  <div class="container">
+    <!--Seccion de agregar un servicio-->
 
-      <div class="tab-pane" id="account">
-        <h4 class="info-text"> Servicio a ofrecer en la pagina </h4>
-        <form action="configuracion.html" method="POST" id="servicios_usuario">
-          <div class="row">
-            <div class="col-sm-10 col-sm-offset-1">
-              <div class="picture-container">
-                <!--Imagen del servicio-->
-                <div class="btn picture">
-                  <img src="assets/images/default-avatar.png" class="picture-src" title="" />
-                  <input class="picture" type="file" id="wizard-services">
-                </div>
-                <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
-                <label for="file-upload" class="custom-file-upload">
-                  <i class="fa fa-cloud-upload"></i> Subir archivo
-                </label>
-                <input id="file-upload" type="file" />
-
-                <h6>Elija una imagen</h6>
-              </div>
-
-              <h4 class="float-left">Servicio :</h4>
-              <select class="float-right form-control" name="servicios" id="servicios">
-                <option value="ninguno">Ninguno</option>
-                <option value="ninguno">Ninguno</option>
-              </select>
-
-              <br />
-              <br />
-              <button type="submit" class="form-control btn btn-primary" name="agregar" onclick=""> Agregar </button>
-              <br />
-              <br />
-
-              <div>
-                <textarea rows="4" cols="50" class="form-control" readonly name="text_servicios" disabled></textarea>
-              </div>
-              <br />
-            </div>
-          </div>
-        </form>
-        <form action="configuracion.html" method="POST" id="cuerpo">
-          <div class="row">
-            <div class="col-sm-10 col-sm-offset-1">
-              <button class="form-control btn btn-primary" (click)="findMe()"> Mostrar Ubicacion </button>
-              <div>{{ubicaciones.city}} </div>
-              <div>{{ubicaciones.region}} </div>
-              <div>{{ubicaciones.country_name}} </div>
-              <div id="map"></div>
-              <div id="mapa"></div>
-            </div>
-          </div>
-        </form>
-
+    <div class="container col-lg-5 float-left">
+      <div class="form-group">
+        <h5>Seleccionar image:</h5>
+        <input type="file" accept=".png, .jpg" (change)="onUpload($event)">
       </div>
+      <div class="progress">
+        <div [style.visibility]="(uploadPercent == 0) ? 'hidden' : 'visible'" class="progress-bar progress-bar-striped bg-success"
+          role="progressbar" [style.width]="(uploadPercent | async) +'%'">
+
+          <!-- <span class="progressText" *ngIf="urlImage | async">
+                Ok!!</span> -->
+        </div>
+      </div>
+      <br>
 
 
-    </section>
-    <!--Fin panel para ofrecer los servicios-->
+
+    </div>
+
+    <!--Espacio intermedio para la separacion-->
+    <div class="col-lg-2 float-right">
+
+    </div>
+
+    <!--Area para poner una descripcion del servicio que se va a ofercer-->
+    <div class="col-lg-5 float-right">
+
+    </div>
+
 
   </div>
-  
+
 
 </div>
 
 
 
 <!-- start footer Area -->
-<footer class="footer-area ">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 col-sm-12">
-        <img src="assets/images/fast_services_logo_pagina.png" align="rigth">
-        <p>Todos los derechos reservados 2018-2019</p>
+
+<blockquote class="blockquote">
+  <footer class="footer-area blockquote-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-sm-12">
+          <img src="assets/images/fast_services_logo_pagina.png">
+          <p>Todos los derechos reservados 2018-2019</p>
+        </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
+
+</blockquote>
