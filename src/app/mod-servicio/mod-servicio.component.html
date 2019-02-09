@@ -65,60 +65,93 @@
     </div>
   </header>
   <br />
-
+  <hr style="width:100%;">
 
   <div class="container">
-    <!--Seccion de agregar un servicio-->
 
-    <div class="container col-lg-5 float-left">
-      <div class="form-group">
-        <h5>Seleccionar image:</h5>
-        <input type="file" accept=".png, .jpg" (change)="onUpload($event)">
-      </div>
-      <div class="progress">
-        <div [style.visibility]="(uploadPercent == 0) ? 'hidden' : 'visible'" class="progress-bar progress-bar-striped bg-success"
-          role="progressbar" [style.width]="(uploadPercent | async) +'%'">
+    <!--Secciona la imagen para agregar un servicio de agregar un servicio-->
 
-          <!-- <span class="progressText" *ngIf="urlImage | async">
-                Ok!!</span> -->
+    <div class="container col-lg-5 float-left rounded border col-md-offset-1">
+      <br />
+      <!--Seleciona el tipo de serivicio a ofrecer tipo list-->
+      <h5 class="float-left">Servicio :</h5>
+      <select class="float-right form-control" name="servicios" id="servicios" [(ngModel)]="servicios">
+        <option *ngFor="let serv of servicios" [value]="serv.id">{{serv.descripcion}}</option>
+      </select>
+      <!--Fin del servicio a ofrecer-->
+
+      <br />
+      <br />
+      <br />
+      <br />
+
+      <h5>Elija las imagenes del servicio</h5>
+
+      <div class="input-group mb-3">
+        <br />
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" type='file' accept=".png, .jpg" (change)="onSelectFile($event)">
+          <label class="custom-file-label" for="inputGroupFile01">Eliga la imagen</label>
         </div>
       </div>
-      <br>
-
-
-
+      <img [src]="fileUrl" class="img-thumbnail">
+      <br />
+      <br />
+      <button type="button" class="btn btn-secondary" (click)="onUpload()">Subir imagen</button>
+      <br />
+      <br />
     </div>
 
     <!--Espacio intermedio para la separacion-->
-    <div class="col-lg-2 float-right">
+    <div class="col-lg-2 float-left">
+      <div class="col-md-2 col-md-offset-2"></div>
 
     </div>
 
     <!--Area para poner una descripcion del servicio que se va a ofercer-->
     <div class="col-lg-5 float-right">
+      <form>
+        <div class="form-group">
+          <label for="servicioAgregar">Servicio</label>
+          <input type="password" class="form-control" id="servicioAgregar" placeholder="Servicio a agregar">
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar servicio</button>
+      </form>
+
 
     </div>
 
-
   </div>
 
+  <div class="container">
+    <div class="row">
+      <div class="border rounded float-none col-lg-10 col-xs-12 col-sm-12">
+        <h3>¿No encuentras el servicio que deseas ofrecer?</h3>
+        <br />
+        <form>
+          <div class="form-group">
+            <label for="servicioAgregar">Servicio</label>
+            <input type="password" class="form-control" id="servicioAgregar" placeholder="Servicio a agregar">
+          </div>
+          <button type="submit" class="btn btn-primary">Agregar servicio</button>
+        </form>
+        <br />
+
+      </div>
+
+    </div>
+  </div>
 
 </div>
 
 
 
-<!-- start footer Area -->
-
-<blockquote class="blockquote">
-  <footer class="footer-area blockquote-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-sm-12">
-          <img src="assets/images/fast_services_logo_pagina.png">
-          <p>Todos los derechos reservados 2018-2019</p>
-        </div>
+<!-- start footer Area
+  <footer class="footer-area ">
+    <div class="row">
+      <div class="col-lg-12 col-sm-12">
+        <img src="assets/images/fast_services_logo_pagina.png">
+        <p>Todos los derechos reservados 2018-2019</p>
       </div>
     </div>
-  </footer>
-
-</blockquote>
+  </footer> -->

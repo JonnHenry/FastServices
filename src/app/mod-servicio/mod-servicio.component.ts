@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { UbicacionService } from '../ubicacion/ubicacion.service';
 import * as Leaflet from 'leaflet';
 import { Observable } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-mod-servicio',
@@ -12,23 +14,63 @@ import { Observable } from 'rxjs';
 })
 export class ModServicioComponent implements OnInit {
   public ubicaciones = [];
-  private title: string;
-  uploadPercent: Observable<number>;
-  urlImage: Observable<string>;
+  public servicios: any;
+  public servicioSelecionado: string; // contiene al elemento selecionado que esta ofreciendo el servicio
+  // uploadPercent
+  public uploadPercent: Observable<number>;
+  public urlImage: Observable<string>;
+  public persona: any;
+  public fileUrl = ''; // Url de la imagen que se desea cargar (estq url es del equipo del usuario)
 
   constructor(private router: Router,
     private appComponent: AppComponent,
     private _ubicacionService: UbicacionService,
     private storage: AngularFireStorage) {
-     }
+      if ( this.appComponent.iniciadaSesion() && this.appComponent.obtenerSesion() !== null ) {
+        this.persona = appComponent.obtenerSesion();
+      }
+    }
 
   ngOnInit() {
+    // Rellenar los servicios que ofrece
+  }
+
+  onUpload() {
+    if ( this.fileUrl === '' || this.servicioSelecionado === 'Ninguno') {
+      alert('Error no hay ninguna imagen para subir');
+    } else {
+      // console.log('subir', e.target.files[0]);
+    const id = Math.random().toString(36).substring(2);
+    const filePath = 'servicios/' + this.persona.correo + this.servicioSelecionado;
+    const ref = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, this.fileUrl);
+    this.uploadPercent = task.percentageChanges();
+    task.snapshotChanges().pipe(finalize(() => this.urlImage = ref.getDownloadURL())).subscribe();
+    console.log(this.urlImage);
+    this.fileUrl = '';
+    alert('Imagen subida con exito!');
+    }
+
+  }
+
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      // tslint:disable-next-line:no-shadowed-variable
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
+        this.fileUrl = event.target.result;
+      };
+    }
   }
 
   cerrarSesion() {
     this.appComponent.cerrarSesion();
     this.router.navigate(['login']);
   }
+
   findMe() {
     const output = document.getElementById('map');
     this._ubicacionService.getUbicacion()
@@ -58,6 +100,7 @@ export class ModServicioComponent implements OnInit {
     function error() {
       output.innerHTML = '<p>No se pudo obtener tu ubicación</p>';
     }
+
     function drawMap(lat, lon) {
       const mapa = Leaflet.map('mapa').setView([lat, lon], 15);
       Leaflet.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -78,4 +121,6 @@ export class ModServicioComponent implements OnInit {
     }
     navigator.geolocation.getCurrentPosition(localizacion, error);
   }
+
+
 }
