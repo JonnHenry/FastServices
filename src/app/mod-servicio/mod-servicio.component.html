@@ -74,8 +74,9 @@
           <br />
           <div class="form-group">
             <label class="h6">Servicio</label>
-            <select class="float-right form-control" name="servicios" id="servicios" [(ngModel)]="servicios">
-              <option *ngFor="let serv of servicios" [value]="serv.id">{{serv.descripcion}}</option>
+            <select class="float-right form-control" name="servicios" (change)="capturar()" id="servicios" [(ngModel)]="opcionSeleccionado">
+              <option value="0">Selecciona una opción</option>
+              <option *ngFor="let serv of servicios" [value]="serv.idServicio">{{serv.descripcionServicio}}</option>
             </select>
           </div>
           <div class="form-group">
@@ -118,19 +119,20 @@
         <div class="rounded border col-lg-12 float-left col-xl-12 col-md-12 p-3 mb-2 bg-warning text-dark">
           <br />
           <h3 class="text-success">No encuentras el servicio que deseas ofrecer, puedes agregarlo!</h3>
-          <form #formSolServicio="ngForm" (ngSubmit)="pedirSolServ(formSolServicio)"><!--button type="submit" class="btn btn-success"-->
+          <form #formSolServicio="ngForm" (ngSubmit)="pedirSolServ(formSolServicio)">
             <br />
             <div class="form-group">
               <label class="h6" for="servicioAdd">Servicio</label>
               <br />
-              <input type="text" class="form-control" name="servicioAdd" placeholder="Servicio a agregar"
-              [(ngModel)]="agregarServicio.descripcionServicio" #servicioAdd="ngModel" required >
+              <input type="text" class="form-control" name="servicioAdd" placeholder="Servicio a agregar" [(ngModel)]="agregarServicio.descripcionServicio"
+                #servicioAdd="ngModel" required>
               <span *ngIf="servicioAdd.touched && !servicioAdd.valid">
-                  <label class="alert alert-danger">Error al ingresar los datos en el campo</label>
-                </span>
+                <label class="alert alert-danger">Error al ingresar los datos en el campo</label>
+              </span>
             </div>
+            <button type="submit" class="btn btn-success" [disabled]="!formSolServicio.form.valid">Agregar a la lista
+              de servicios</button>
           </form>
-          <button type="submit" class="btn btn-success" [disabled]="!formSolServicio.form.valid">Agregar a la lista de servicios</button>
           <br />
           <br />
         </div>

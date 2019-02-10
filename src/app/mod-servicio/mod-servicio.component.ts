@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { PeticionesService } from '../services/peticiones';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-mod-servicio',
@@ -17,7 +18,9 @@ import { PeticionesService } from '../services/peticiones';
 export class ModServicioComponent implements OnInit {
   public ubicaciones = [];
   public servicios: any;
-  public servicioSelecionado: string; // contiene al elemento selecionado que esta ofreciendo el servicio
+  public servicioSelecionado = ''; // contiene al elemento selecionado que esta ofreciendo el servicio
+  public opcionSeleccionado = '0';
+
   // uploadPercent
   public uploadPercent: Observable<number>;
   public urlImage: Observable<string>;
@@ -30,9 +33,10 @@ export class ModServicioComponent implements OnInit {
     private _ubicacionService: UbicacionService,
     private storage: AngularFireStorage,
     private _peticionesService: PeticionesService) {
+    this.obtenerServicios();
 
     this.agregarServicio = {
-      descripcionServicio: 'Hola esto es de prueba'
+      descripcionServicio: ''
     };
 
       if ( this.appComponent.iniciadaSesion() && this.appComponent.obtenerSesion() !== null ) {
@@ -47,17 +51,50 @@ export class ModServicioComponent implements OnInit {
     this.findMe();
   }
 
-  pedirSolServ(formSolServicio) {
-    alert('Esto es un mensaje de prueba');
+  pedirSolServ(form) { // pedirSolServ
+    console.log(this.agregarServicio.descripcionServicio);
+    this._peticionesService.addServicio(this.agregarServicio).subscribe(
+      response => {
+        form.reset();
+        alert(response.respuesta);
+      },
+      error => {
+        console.log(<any>error);
+      });
+  }
+
+  obtenerServicios() {
+    this._peticionesService.getServicios().subscribe(
+      result => {
+        this.servicios = result;
+        console.log(result);
+        console.log('Se recupero los datos de una manera correcta');
+    },
+    error => {
+      console.log(<any>error);
+    });
+  }
+
+  capturar() { // Capturar los datos
+    // this.servicioSelecionado = this.opcionSeleccionado;
+    if (this.opcionSeleccionado == '0') {
+      this.servicioSelecionado = '';
+      console.log(this.servicioSelecionado);
+    } else {
+      this.servicioSelecionado = this.servicios[(Number(this.opcionSeleccionado)) - 1].descripcionServicio;
+      console.log(this.servicioSelecionado);
+    }
+    // console.log(this.servicios[this.servicioSelecionado-1].descripcionServicio);
   }
 
 
   onUpload() {
     if ( this.fileUrl === '' || this.servicioSelecionado === '') {
-      alert('Error no hay ninguna imagen para subir');
+      alert('Error no hay ninguna imagen para subir o revise que seleciono un servicio');
     } else {
     const id = Math.random().toString(36).substring(2);
-    const filePath = 'servicios/' + this.persona.correo + this.servicioSelecionado;
+    const filePath = 'servicios/' + this.persona.correo + '/' + this.servicioSelecionado;
+    console.log(filePath);
     const ref = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, this.fileUrl);
     this.uploadPercent = task.percentageChanges();

@@ -50,4 +50,9 @@ export class PeticionesService {
       return this._http.post(this.url + '/servicio/nuevo', params, { headers : headers });
   }
 
+    getServicios(): Observable<any> {// Agregar un nuevo servicio
+      return this._http.get(this.url + '/servicios');
+  }
+
+
 }
