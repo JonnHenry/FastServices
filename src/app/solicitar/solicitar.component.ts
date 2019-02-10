@@ -1,7 +1,4 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import {Component,OnInit} from '@angular/core';
 import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
 
@@ -15,11 +12,17 @@ import { Router } from '@angular/router';
   ]
 })
 export class SolicitarComponent implements OnInit {
-
+  public usuario_servicio :String ="nombre_usuario";
   constructor(private appComponent: AppComponent,  private router: Router) {}
 
-  ngOnInit() {}
-
+  ngOnInit() {
+    this.comentarios();
+  }
+comentarios(){  
+  
+  const output = document.getElementById('face');
+  output.innerHTML ='<div id="fb" class="fb-comments" data-href="https://localhost:4200/'+this.usuario_servicio+'" data-width="500" data-numposts="3"></div>';
+}
   cerrarSesion() {
     this.appComponent.cerrarSesion();
     this.router.navigate(['login']);
