@@ -125,7 +125,7 @@ export class ModServicioComponent implements OnInit {
             this.urlImagenes = url + ',' + this.urlImagenes; // El separador es el ;
             alert('Imagen subida con exito!');
             this.contador ++;
-            alert('El contador es: ' + this.contador + ' ' + this.urlImagenes);
+            //alert('El contador es: ' + this.contador + ' ' + this.urlImagenes);
           });
       })).subscribe();
       console.log(this.urlImage);
