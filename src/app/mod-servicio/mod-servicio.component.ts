@@ -151,6 +151,7 @@ export class ModServicioComponent implements OnInit {
       this.urlImagenes = '';
       this.descrpcnServicio = '';
       this.persona.correo = '';
+      this.contador = 0;
       this.router.navigate(['buscar']);
     },
     error => {
