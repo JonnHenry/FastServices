@@ -17,16 +17,27 @@ import { FormsModule } from '@angular/forms';
 })
 export class ModServicioComponent implements OnInit {
   public ubicaciones = [];
+  // Par poder tener las ubicaciones del servicio
+  private ciudad: string;
+  private pais: string;
+  private provincia: string;
+  private latitud: string;
+  private longitud: string;
+  private enviarServicio: any;
+  // fin declaracion de variables
   public servicios: any;
   public servicioSelecionado = ''; // contiene al elemento selecionado que esta ofreciendo el servicio
   public opcionSeleccionado = '0';
+  private contador = 0;
 
   // uploadPercent
   public uploadPercent: Observable<number>;
   public urlImage: Observable<string>;
   public persona: any;
   public agregarServicio: any;
-  public fileUrl = ''; // Url de la imagen que se desea cargar (estq url es del equipo del usuario)
+  public descrpcnServicio: string; //Descripcion del servicio
+
+  public urlImagenes  = ''; // Url que va a ser enviadas a la base de datos con los datos de las imagenes
 
   constructor(private router: Router,
     private appComponent: AppComponent,
@@ -47,11 +58,20 @@ export class ModServicioComponent implements OnInit {
     // fin constructor
 
   ngOnInit() {
+    this.enviarServicio = {
+      'idPersona' : '',
+      'idServOfrece' : '',
+      'fotoServicio' : '',
+      'latitud' : '',
+      'longitud' : '',
+      'ciudad' : '',
+      'descripcionServicio': ''
+    };
     // Rellenar los servicios que ofrece
     this.findMe();
   }
 
-  pedirSolServ(form) { // pedirSolServ
+  pedirSolServ(form) { // pedir solcitud de servicio
     console.log(this.agregarServicio.descripcionServicio);
     this._peticionesService.addServicio(this.agregarServicio).subscribe(
       response => {
@@ -75,46 +95,67 @@ export class ModServicioComponent implements OnInit {
     });
   }
 
-  capturar() { // Capturar los datos
+  capturar() { // Capturar los datos de un select para poder guardar las imagenes
     // this.servicioSelecionado = this.opcionSeleccionado;
     if (this.opcionSeleccionado == '0') {
       this.servicioSelecionado = '';
       console.log(this.servicioSelecionado);
     } else {
-      this.servicioSelecionado = this.servicios[(Number(this.opcionSeleccionado)) - 1].descripcionServicio;
+      this.servicioSelecionado = this.servicios[(Number(this.opcionSeleccionado)) - 1].idServicio;
       console.log(this.servicioSelecionado);
     }
-    // console.log(this.servicios[this.servicioSelecionado-1].descripcionServicio);
   }
 
 
-  onUpload() {
-    if ( this.fileUrl === '' || this.servicioSelecionado === '') {
-      alert('Error no hay ninguna imagen para subir o revise que seleciono un servicio');
-    } else {
-    const id = Math.random().toString(36).substring(2);
-    const filePath = 'servicios/' + this.persona.correo + '/' + this.servicioSelecionado;
-    console.log(filePath);
-    const ref = this.storage.ref(filePath);
-    const task = this.storage.upload(filePath, this.fileUrl);
-    this.uploadPercent = task.percentageChanges();
-    task.snapshotChanges().pipe(finalize(() => this.urlImage = ref.getDownloadURL())).subscribe();
-    console.log(this.urlImage);
-    this.fileUrl = '';
-    alert('Imagen subida con exito!');
-    }
-  }
 
   onSelectFile(event) {
-    if (event.target.files && event.target.files[0]) {
-      const reader = new FileReader();
-
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-      // tslint:disable-next-line:no-shadowed-variable
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        this.fileUrl = event.target.result;
-      };
+    const fileUrl = event.target.files[0];
+    if (this.servicioSelecionado !== '' && this.contador !== 3 ) {
+      const id = Math.random().toString(36).substring(2);
+      const filePath = 'servicios/' + this.persona.correo + '/' + id;
+      console.log(filePath);
+      const ref = this.storage.ref(filePath);
+      console.log('Paso ref');
+      console.log('El url del archivo', fileUrl);
+      const task = this.storage.upload(filePath, fileUrl);
+      console.log('Paso task');
+      this.uploadPercent = task.percentageChanges();
+      console.log('Paso uploadPercent');
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          ref.getDownloadURL().subscribe(url => {
+            this.urlImagenes = url + ',' + this.urlImagenes; // El separador es el ;
+            alert('Imagen subida con exito!');
+            this.contador ++;
+            alert('El contador es: ' + this.contador + ' ' + this.urlImagenes);
+          });
+      })).subscribe();
+      console.log(this.urlImage);
+    } else {
+        alert('Error no hay ninguna imagen o se excedio el limite, ademas revise que seleciono un servicio');
     }
+  }
+
+  addServicio() {
+   this.enviarServicio.idPersona = this.persona.correo;
+   this.enviarServicio.idServOfrece =  this.servicioSelecionado;
+   this.enviarServicio.fotoServicio = this.urlImagenes;
+   this.enviarServicio.latitud = this.latitud;
+   this.enviarServicio.longitud = this.longitud;
+   this.enviarServicio.ciudad = this.ciudad;
+   this.enviarServicio.descripcionServicio = this.descrpcnServicio;
+   this._peticionesService.addServicioPersona(this.enviarServicio).subscribe(
+    response => {
+      alert(response.respuesta);
+      this.servicioSelecionado = '';
+      this.urlImagenes = '';
+      this.descrpcnServicio = '';
+      this.persona.correo = '';
+      this.router.navigate(['buscar']);
+    },
+    error => {
+      console.log(<any>error);
+    });
   }
 
   cerrarSesion() {
@@ -122,10 +163,16 @@ export class ModServicioComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
-  findMe() {
+  findMe() { // Geolocalizacion
     const output = document.getElementById('map');
-    this._ubicacionService.getUbicacion()
-  .subscribe(data => this.ubicaciones = data);
+    this._ubicacionService.getUbicacion().subscribe((data) => {
+      this.ubicaciones = data;
+      this.ciudad = this.ubicaciones['city'];
+      this.pais = this.ubicaciones['country_name'];
+      this.latitud = this.ubicaciones['latitude'];
+      this.longitud = this.ubicaciones['longitude'];
+      this.longitud = this.ubicaciones['region'];
+    });
 
     // Verificar si soporta geolocalizacion
     if (navigator.geolocation) {

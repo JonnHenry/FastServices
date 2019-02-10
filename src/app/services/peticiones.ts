@@ -54,5 +54,11 @@ export class PeticionesService {
       return this._http.get(this.url + '/servicios');
   }
 
+  addServicioPersona(servicioPersona): Observable<any> {
+    const params = JSON.stringify(servicioPersona);
+    const headers = new HttpHeaders().set('Content-Type' , 'application/json');
+    return this._http.post(this.url + '/servicios/nuevo', params, { headers : headers });
+}
+
 
 }
