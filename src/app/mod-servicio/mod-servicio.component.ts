@@ -97,7 +97,7 @@ export class ModServicioComponent implements OnInit {
 
   capturar() { // Capturar los datos de un select para poder guardar las imagenes
     // this.servicioSelecionado = this.opcionSeleccionado;
-    if (this.opcionSeleccionado == '0') {
+    if (this.opcionSeleccionado === '0') {
       this.servicioSelecionado = '';
       console.log(this.servicioSelecionado);
     } else {
@@ -125,7 +125,7 @@ export class ModServicioComponent implements OnInit {
             this.urlImagenes = url + ',' + this.urlImagenes; // El separador es el ;
             alert('Imagen subida con exito!');
             this.contador ++;
-            //alert('El contador es: ' + this.contador + ' ' + this.urlImagenes);
+            // alert('El contador es: ' + this.contador + ' ' + this.urlImagenes);
           });
       })).subscribe();
       console.log(this.urlImage);
