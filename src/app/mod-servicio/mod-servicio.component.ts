@@ -19,7 +19,6 @@ export class ModServicioComponent implements OnInit {
   public ubicaciones = [];
   // Par poder tener las ubicaciones del servicio
   private ciudad: string;
-  private pais: string;
   private provincia: string;
   private latitud: string;
   private longitud: string;
@@ -45,7 +44,6 @@ export class ModServicioComponent implements OnInit {
     private storage: AngularFireStorage,
     private _peticionesService: PeticionesService) {
     this.obtenerServicios();
-
     this.agregarServicio = {
       descripcionServicio: ''
     };
@@ -65,6 +63,7 @@ export class ModServicioComponent implements OnInit {
       'latitud' : '',
       'longitud' : '',
       'ciudad' : '',
+      'provincia' : '',
       'descripcionServicio': ''
     };
     // Rellenar los servicios que ofrece
@@ -77,9 +76,10 @@ export class ModServicioComponent implements OnInit {
       response => {
         form.reset();
         alert(response.respuesta);
+        this.obtenerServicios();
       },
       error => {
-        console.log(<any>error);
+        alert(<any>error);
       });
   }
 
@@ -105,8 +105,6 @@ export class ModServicioComponent implements OnInit {
       console.log(this.servicioSelecionado);
     }
   }
-
-
 
   onSelectFile(event) {
     const fileUrl = event.target.files[0];
@@ -143,7 +141,9 @@ export class ModServicioComponent implements OnInit {
    this.enviarServicio.latitud = this.latitud;
    this.enviarServicio.longitud = this.longitud;
    this.enviarServicio.ciudad = this.ciudad;
+   this.enviarServicio.provincia = this.provincia;
    this.enviarServicio.descripcionServicio = this.descrpcnServicio;
+   console.log(this.enviarServicio);
    this._peticionesService.addServicioPersona(this.enviarServicio).subscribe(
     response => {
       alert(response.respuesta);
@@ -169,10 +169,9 @@ export class ModServicioComponent implements OnInit {
     this._ubicacionService.getUbicacion().subscribe((data) => {
       this.ubicaciones = data;
       this.ciudad = this.ubicaciones['city'];
-      this.pais = this.ubicaciones['country_name'];
+      this.provincia = this.ubicaciones['region'];
       this.latitud = this.ubicaciones['latitude'];
       this.longitud = this.ubicaciones['longitude'];
-      this.longitud = this.ubicaciones['region'];
     });
 
     // Verificar si soporta geolocalizacion
