@@ -19,6 +19,7 @@ import { UbicacionService } from './ubicacion/ubicacion.service';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 // tslint:disable-next-line:prefer-const
 let config = new AuthServiceConfig([
@@ -53,7 +54,8 @@ export function provideConfig() {
     HttpClientModule,
     SocialLoginModule,
     AngularFireModule.initializeApp(environment.config),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    LeafletModule.forRoot()
   ],
   providers: [UbicacionService,
     {
