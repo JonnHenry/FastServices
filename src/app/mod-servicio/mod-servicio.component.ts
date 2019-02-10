@@ -34,7 +34,7 @@ export class ModServicioComponent implements OnInit {
   public urlImage: Observable<string>;
   public persona: any;
   public agregarServicio: any;
-  public descrpcnServicio: string; //Descripcion del servicio
+  public descrpcnServicio: string; // Descripcion del servicio
 
   public urlImagenes  = ''; // Url que va a ser enviadas a la base de datos con los datos de las imagenes
 
