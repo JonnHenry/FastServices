@@ -9,12 +9,25 @@ import { Router } from '@angular/router';
   styleUrls: ['bootstrap.min.css',
     './buscar.component.css',
     './shop_responsive.css',
-    './shop_styles.css']
+    './shop_styles.css'],
+  providers: [ PeticionesService ]
 
 })
 export class BuscarComponent implements OnInit {
 
-  constructor(private appComponent: AppComponent, private router: Router) { }
+  public servicios: any;
+  public servicioSelecionado = ''; // contiene al elemento selecionado que esta ofreciendo el servicio
+  public opcionSeleccionado = '0';
+  public servEncontrados = 0; // Indica la cantidad de servicios que se encuentran
+  public resultadosBusqueda: any;
+  public errorBuscar: any;
+
+  constructor(private appComponent: AppComponent,
+    private router: Router,
+    private _peticionesService: PeticionesService) {
+      this.obtenerServicios();
+
+     }
 
   ngOnInit() {
   }
@@ -22,6 +35,50 @@ export class BuscarComponent implements OnInit {
   cerrarSesion() {
     this.appComponent.cerrarSesion();
     this.router.navigate(['login']);
+  }
+
+  obtenerServicios() {// obtiene la lista de servicios a consultar
+    this._peticionesService.getServicios().subscribe(
+      result => {
+        this.servicios = result;
+        console.log(result);
+        console.log('Se recupero los datos de una manera correcta');
+    },
+    error => {
+      console.log(<any>error);
+    });
+  }
+
+  capturar() { // Capturar los datos de un select para poder guardar las imagenes0./
+    if (this.opcionSeleccionado === '0') {
+      this.servicioSelecionado = '';
+      console.log(this.servicioSelecionado);
+    } else {
+      this.servicioSelecionado = this.servicios[(Number(this.opcionSeleccionado)) - 1].idServicio;
+      console.log(this.servicioSelecionado);
+    }
+  }
+
+  getListServDispo() {
+    if ( this.servicioSelecionado !== '') {
+      this.capturar();
+      this._peticionesService.getListServPersonas(this.servicioSelecionado).subscribe(
+        result => {
+          this.resultadosBusqueda = result.resulBusqueda;
+          this.servEncontrados = result.cantidadServicios;
+          this.errorBuscar = result.errorBuscar;
+          if (this.servEncontrados === 0) {
+            alert('No se encontraron servicios registrados')
+          }
+      },
+      error => {
+        console.log(<any>error);
+      });
+
+    } else {
+      alert('No se ha selecionado un servicio!');
+    }
+
   }
 
 }

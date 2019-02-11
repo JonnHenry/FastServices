@@ -48,11 +48,18 @@ export class PeticionesService {
       const params = JSON.stringify(servicio);
       const headers = new HttpHeaders().set('Content-Type' , 'application/json');
       return this._http.post(this.url + '/servicio/nuevo', params, { headers : headers });
-  }
+    }
 
-    getServicios(): Observable<any> {// Agregar un nuevo servicio
+    getServicios(): Observable<any> {// Trae la lista de servicios disponibles en la tabla servicios
       return this._http.get(this.url + '/servicios');
-  }
+    }
+
+    getListServPersonas(idServicio): Observable<any> { // Obtiene todos los servicios de una categoria
+      const headers = new HttpHeaders().set('Content-Type', 'application/json');
+      console.log('Las headers son:' + headers);
+      return this._http.get(this.url + '/obtenerservicios/' + idServicio, { headers : headers });
+    }
+
 
   addServicioPersona(servicioPersona): Observable<any> {
     const params = JSON.stringify(servicioPersona);

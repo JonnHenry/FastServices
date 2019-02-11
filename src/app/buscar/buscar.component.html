@@ -19,13 +19,13 @@
 
                   <ul class="nav">
                     <li class="nav-item border">
-                      <a class="nav-link active" href="#">
+                      <a class="nav-link active" routerLink="/home">
                         <h4>Home</h4>
                       </a>
                     </li>
 
                     <li class="nav-item border rounded">
-                      <a class="nav-link" href="#">
+                      <a class="nav-link" routerLink="/buscar">
                         <h4>Buscar</h4>
                       </a>
                     </li>
@@ -48,7 +48,7 @@
                   <!--Imagen de l usuario-->
                   <div class="wishlist_icon"><img src="assets/images/user.png" alt="Usuario"></div>
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                       aria-expanded="false"></a>
                     <div class="dropdown-menu">
                       <a class="dropdown-item" routerLink="/config-perfil">Modificar usuario</a>
@@ -59,65 +59,65 @@
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
     </header>
 
-  <!--Shop-->
+  <!--Contenedor del body-->
 
   <div class="row">
     <div class="container ">
       <div class="row">
-        <div class="col-lg-3 col-sm-3 col-xs-3">
-
-          <!-- Shop Sidebar -->
+        <div class="col-lg-12 col-sm-12 col-xs-12">
+          <!-- Seleccion de los servicios-->
           <form class="form-inline">
-            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Servicio:</label>
-            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-              <option selected>Limpieza</option>
-              <option value="Mecánica">Mecánica</option>
-              <option value="Fontaneria">Fontaneria</option>
-            </select>
-            <button type="submit" class="btn btn-primary"><img src="assets/images/search.png"></button>
+            <label class="h4 text-info float-left col-lg-2 float-left col-sm-4 col-xs-4" for="inlineFormCustomSelectPref">Servicio:</label>
+            <select class="float-right form-control col-lg-4 float-left col-sm-6 col-xs-6" name="servicios" (change)="capturar()" id="servicios" [(ngModel)]="opcionSeleccionado">
+              <option value="0">Selecciona una opción</option>
+              <option *ngFor="let serv of servicios" [value]="serv.idServicio">{{serv.descripcionServicio}}</option>
+              </select>
+              <br />
+              <br />
+            <input type="button" class="btn btn-primary" value="Buscar Servicio" (click)="getListServDispo()">
           </form>
+
         </div>
 
-        <div class="col-lg-9 col-sm-9 col-xs-9">
+        <div class="col-lg-12 col-sm-12 col-xs-12">
           <!-- Shop Content -->
+
+          <hr style="width:100%;">
 
           <div class="shop_content">
             <div class="shop_bar clearfix">
-              <div class="shop_product_count"><span>1</span> products found</div>
+              <div class="shop_product_count"><span>{{servEncontrados}}</span> Servicio encontrado</div>
               <div class="shop_sorting">
               </div>
             </div>
 
-
             <!-- Product Item -->
-            <div class="container_producto col-lg-12 col-sm-12 col-xs-12">
+            <div class="container_producto col-lg-12 col-sm-12 col-xs-12" *ngFor="let result of resultadosBusqueda">
+              <!--resultadosBusqueda-->
               <div class="col-lg-12 col-sm-12">
-                <div class="imagen_servicio col-lg-3"><img src="assets/images/servicio_hace.jpg"></div>
-                <div class="contenedor_descripcion_servicio col-lg-">
-                  <textarea name="textarea" rows="3" cols="55" disabled="true" class="descripcion_servicio">Descripcion acerca del producto la cual tiene que tener una cantidad maxima de caracteres.</textarea>
+                <div class="imagen_servicio "><img [src]="result.fotoServicio.split(',')[0]"height="130" width="200"></div>
+                <div class="contenedor_descripcion_servicio ">
+                  <div class="servicio_provincia text-primary">{{result.provincia}},</div>
+                  <label class="servicio_ciudad text-primary">Ciudad:</label>
+                  <div class="servicio_ciudad text-primary">{{result.ciudad}}</div>
+                  <br />
+                  <br />
+                  <div>
+                      <label class="servicio_provincia text-dark float-left">Descripción del servicio : </label>
+                      <textarea name="textarea" rows="3" cols="75" disabled="true" class="espacio col-md-offset-3 float-right border rounded">{{result.descripcionServicio}}</textarea>
+                  </div>
+                  <br />
                 </div>
-                <div><label class="star">★★★★★</label></div>
               </div>
-
-              <br />
-              <div class="informacion_contacto">
-                <div class="veces_contratado">#Veces contratado</div>
-                <div class="servicio_provincia">Provincia</div>
-                <div class="servicio_ciudad">Ciudad</div>
-
-              </div>
-              <div class="button_container col-lg-">
-                <a routerLink="/solicitar" class="button buscar_button">Ingresar</a>
-              </div>
+              <input type="button" class="btn btn-primary float-right" value="Ingresar al servicio" (click)="obtenerServicios()">
             </div>
-
           </div>
-
         </div>
       </div>
     </div>
