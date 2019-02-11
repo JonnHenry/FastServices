@@ -17,7 +17,6 @@ export class PeticionesService {
         return this._http.get(this.url + '/personas');
     }
 
-
     addPersona(persona): Observable<any> {
         const params = JSON.stringify(persona);
         const headers = new HttpHeaders().set('Content-Type' , 'application/json');
@@ -28,7 +27,7 @@ export class PeticionesService {
       const params = JSON.stringify(datos);
       const headers = new HttpHeaders().set('Content-Type' , 'application/json');
       return this._http.post(this.url + '/login/persona', params, { headers : headers });
-  }
+    }
 
     deletePersona(id): Observable<any> {
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -56,10 +55,24 @@ export class PeticionesService {
 
     getListServPersonas(idServicio): Observable<any> { // Obtiene todos los servicios de una categoria
       const headers = new HttpHeaders().set('Content-Type', 'application/json');
-      console.log('Las headers son:' + headers);
       return this._http.get(this.url + '/obtenerservicios/' + idServicio, { headers : headers });
     }
 
+    getUser(idUsuario) { // Obtener los datos de un usuario
+      const headers = new HttpHeaders().set('Content-Type', 'application/json');
+      return this._http.get(this.url + '/personas/' + idUsuario, { headers : headers });
+    }
+
+    findUserServ(datos): Observable<any> { // buscar a una persona que ofece un servicio
+      const params = JSON.stringify(datos);
+      const headers = new HttpHeaders().set('Content-Type' , 'application/json');
+      return this._http.post(this.url + '/servicio/persona', params, { headers : headers });
+    }
+
+    findDescripcion(idServicio): Observable<any> { // buscar la descripcion de un servicio
+      const headers = new HttpHeaders().set('Content-Type', 'application/json');
+      return this._http.get(this.url + '/servicio/busca/' + idServicio, { headers : headers });
+    }
 
   addServicioPersona(servicioPersona): Observable<any> {
     const params = JSON.stringify(servicioPersona);

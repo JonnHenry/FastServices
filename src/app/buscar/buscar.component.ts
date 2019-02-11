@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PeticionesService } from '../services/peticiones';
 import { AppComponent } from '../app.component';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-buscar',
@@ -81,4 +81,20 @@ export class BuscarComponent implements OnInit {
 
   }
 
+  navigateOtherPage(datos) {
+    console.log(datos);
+    // tslint:disable-next-line:prefer-const
+    let cadenaEcriptada = btoa(datos.correo + ';' + datos.idServicio);
+    // tslint:disable-next-line:prefer-const
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        'serv': cadenaEcriptada
+      }
+    };
+    /*
+      queryParams.get('datos');
+    */
+    console.log(navigationExtras);
+    this.router.navigate(['/solicitar'], navigationExtras);
+  }
 }
