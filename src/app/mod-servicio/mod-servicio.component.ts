@@ -50,6 +50,8 @@ export class ModServicioComponent implements OnInit {
 
       if ( this.appComponent.iniciadaSesion() && this.appComponent.obtenerSesion() !== null ) {
         this.persona = appComponent.obtenerSesion();
+      } else {
+        this.router.navigate(['login']);
       }
 
     }

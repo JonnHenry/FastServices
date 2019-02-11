@@ -32,6 +32,7 @@ export class SolicitarComponent implements OnInit {
   private contador = 0;
   private longitud = 0;
   public provincia = '';
+  public persona: any;
   public defaultImagen = 'assets/images/servicios-default.png';
   public imagenes: any;
   public rutaImagenPrincipal = this.defaultImagen;
@@ -44,6 +45,13 @@ export class SolicitarComponent implements OnInit {
   constructor(private appComponent: AppComponent, private router: Router,
     private route: ActivatedRoute,
     private _peticionesService: PeticionesService) {
+    if ( this.appComponent.iniciadaSesion() && this.appComponent.obtenerSesion() !== null ) {
+      this.persona = appComponent.obtenerSesion();
+      this.persona.clave = '';
+    } else {
+      this.router.navigate(['login']);
+    }
+
     const inforUser = (atob(this.route.snapshot.queryParamMap.get('serv'))).split(';');
     this.user = {
       correo: inforUser[0],

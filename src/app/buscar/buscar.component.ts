@@ -16,6 +16,7 @@ import { Router, NavigationExtras } from '@angular/router';
 export class BuscarComponent implements OnInit {
 
   public servicios: any;
+  public persona: any;
   public servicioSelecionado = ''; // contiene al elemento selecionado que esta ofreciendo el servicio
   public opcionSeleccionado = '0';
   public servEncontrados = 0; // Indica la cantidad de servicios que se encuentran
@@ -26,7 +27,12 @@ export class BuscarComponent implements OnInit {
     private router: Router,
     private _peticionesService: PeticionesService) {
       this.obtenerServicios();
-
+      if ( this.appComponent.iniciadaSesion() && this.appComponent.obtenerSesion() !== null ) {
+        this.persona = appComponent.obtenerSesion();
+        this.persona.clave = '';
+      } else {
+        this.router.navigate(['login']);
+      }
      }
 
   ngOnInit() {

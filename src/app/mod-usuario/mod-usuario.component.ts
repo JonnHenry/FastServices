@@ -19,6 +19,8 @@ export class ModUsuarioComponent implements OnInit {
     if ( this.appComponent.iniciadaSesion() && this.appComponent.obtenerSesion() !== null ) {
       this.persona = appComponent.obtenerSesion();
       this.persona.clave = '';
+    } else {
+      this.router.navigate(['login']);
     }
   }
 
