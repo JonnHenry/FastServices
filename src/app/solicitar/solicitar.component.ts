@@ -39,8 +39,6 @@ export class SolicitarComponent implements OnInit {
   public ciudad = '';
   public comentariosFacebook = 'nombre_usuario';
 
-  // Override default Icons
-
 
   constructor(private appComponent: AppComponent, private router: Router,
     private route: ActivatedRoute,
@@ -60,15 +58,15 @@ export class SolicitarComponent implements OnInit {
 
    }
 
-   async ngOnInit() {
-
+   ngOnInit() {
     this.buscarPersonaServicio(this.user);
     this.buscarPersona(this.user.correo);
+    //await this.resolveAfter2Seconds(20);
     this.buscaDescServicio(this.user.idServicio);
+    //await this.resolveAfter2Seconds(20);
     // tslint:disable-next-line:no-unused-expression
     Marker.prototype.options.icon;
-
-    //this.comentarios();
+    this.comentarios();
     // tslint:disable-next-line:no-unused-expression
   }
 
@@ -79,7 +77,6 @@ export class SolicitarComponent implements OnInit {
         console.log(result);
         this.contador = 0;
         this.comentariosFacebook = result.correo;
-        this.comentarios();
         this.latitud = result.latitud;
         this.longitud = result.longitud;
         this.descrServicio = result.descripcionServicio;
@@ -90,7 +87,7 @@ export class SolicitarComponent implements OnInit {
           this.imagenes = imagenesResult;
           for ( this.contador = imagenesResult.length - 1 ; this.contador <= 3; this.contador++) {
             this.imagenes[Number(this.contador)] = this.defaultImagen;
-         }
+          }
         }
     },
     error => {
@@ -119,7 +116,7 @@ export class SolicitarComponent implements OnInit {
   async buscaDescServicio(idServicio) {
     this._peticionesService.findDescripcion(idServicio).subscribe(
       result => {
-        this.descrServicio = result.respuesta;
+        this.servicioOfrece = result.respuesta;
     },
     error => {
       console.log(<any>error);
@@ -127,11 +124,20 @@ export class SolicitarComponent implements OnInit {
 
   }
 
-  async comentarios() {
+  async resolveAfter2Seconds(x) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(x);
+      }, 2000);
+    });
+  }
 
+  async comentarios() {
+    //await this.resolveAfter2Seconds(20);
     const output = document.getElementById('face');
-    // tslint:disable-next-line:max-line-length
-    output.innerHTML = '<div id="fb" class="fb-comments" data-href="https://localhost:4200/' + this.comentariosFacebook + '" data-width="1000" data-numposts="3"></div>';
+    // tslint:disable-next-line:prefer-const
+    let cadenaUrl = '"https://localhost:4200/' + this.user.correo + '"';
+    output.innerHTML = '<div async id="fb" class="fb-comments" data-href=' + cadenaUrl + ' data-width="1000" data-numposts="3"></div>';
   }
 
   cerrarSesion() {
@@ -139,7 +145,8 @@ export class SolicitarComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
-  async onMapReady(map: L.Map) { //leafletMapReady
+  async onMapReady(map: L.Map) { // leafletMapReady
+    await this.resolveAfter2Seconds(20);
     this.findMe(map);
   }
 
@@ -150,7 +157,7 @@ export class SolicitarComponent implements OnInit {
     function localizacion(posicion) {
       const lat = posicion.coords.latitude;
       const lon = posicion.coords.longitude;
-      map.setView([lat, lon+0.009100], 15);
+      map.setView([lat, lon + 0.009100], 15);
       L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: 'Ubicacion',
         maxZoom: 20,
@@ -160,7 +167,7 @@ export class SolicitarComponent implements OnInit {
       L.Routing.control({
         waypoints: [
           L.latLng(lat, lon),
-          L.latLng(this.latitud, this.longitud)
+          L.latLng(-2.8833, -78.9833)
         ]
       }).addTo(map);
 

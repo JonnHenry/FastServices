@@ -21,13 +21,13 @@
 
                 <ul class="nav">
                   <li class="nav-item border">
-                    <a class="nav-link active" routerLink="/home">
+                    <a class="nav-link active" routerLink='/home'>
                       <h4>Home</h4>
                     </a>
                   </li>
 
                   <li class="nav-item border rounded">
-                    <a class="nav-link" routerLink="/buscar">
+                    <a class="nav-link" routerLink='/buscar'>
                       <h4>Buscar</h4>
                     </a>
                   </li>
@@ -73,22 +73,22 @@
         <!-- Images -->
         <div class="col-lg-2 order-lg-1 order-2">
           <ul class="image_list">
-            <li data-image="images/single_4.jpg"><img async [src]="imagenes[0]" (click)='cargarImagen(0)'></li>
-            <li data-image="images/single_2.jpg"><img async [src]="imagenes[1]" (click)='cargarImagen(1)'></li>
-            <li data-image="images/single_3.jpg"><img async [src]="imagenes[2]" (click)='cargarImagen(2)'></li>
+            <li data-image="images/single_4.jpg"><img async [src]='imagenes[0]' (click)='cargarImagen(0)'></li>
+            <li data-image="images/single_2.jpg"><img async [src]='imagenes[1]' (click)='cargarImagen(1)'></li>
+            <li data-image="images/single_3.jpg"><img async [src]='imagenes[2]' (click)='cargarImagen(2)'></li>
           </ul>
         </div>
 
         <!-- Selected Image -->
         <div class="col-lg-5 order-lg-2 order-1">
-          <div class="image_selected"><img [src]="rutaImagenPrincipal" alt=""></div>
+          <div async class="image_selected"><img [src]="rutaImagenPrincipal" alt=""></div>
         </div>
 
         <!-- Description -->
         <div class="col-lg-5 order-2">
           <div class="product_description">
             <div class="service_name text-dark">{{nombrePerServicio}}</div>
-            <div class="service_category text-primary">Servicio: {{descrServicio}}</div>
+            <div class="service_category text-primary">Servicio: {{servicioOfrece}}</div>
             <div class="service_text border rounded text-info">
               <p class="text-dark">Descripcion: </p>
               <p class="text-dark">{{descrServicio}}</p>
@@ -111,18 +111,20 @@
   <br />
   <br />
   <!---Comentarios-->
-  <div class="container border rounded border-success">
-
-    <div class="" id="map" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)"></div>
+  <div class="container ">
+    <div async class="border rounded border-success col-lg-12" id="map" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)"></div>
   </div>
+  <div class="container ">
+      <div async id="flockler_container"></div>
+    </div>
   <br />
   <br />
 
-  <div class="container border rounded border border-primary">
+  <div class="container ">
     <h2>Comentarios</h2>
-    <div class="row">
-      <div class="comentarios col-lg-12 border rounded">
-        <div id="face"></div>
+    <div class="row border rounded border border-primary">
+      <div class="col-lg-12 border rounded">
+        <div async id="face"></div>
       </div>
     </div>
   </div>
@@ -140,7 +142,7 @@
     </div>
   </footer>
   <!-- End footer Area -->
-
-
-
 </div>
+
+
+
