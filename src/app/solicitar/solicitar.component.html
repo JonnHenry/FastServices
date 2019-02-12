@@ -32,7 +32,7 @@
                     </a>
                   </li>
                   <li class="nav-item border rounded">
-                    <a class="nav-link" href="https://chatfastservice.herokuapp.com/?fbclid=IwAR13h5edwXCxZVE_CkaH3y00lDI7LkpB9tNYSFUvMj3KX_eyzlIF-S7PS9g">
+                    <a class="nav-link" href="https://chatfastservice.herokuapp.com/">
                       <h4>Chat</h4>
                     </a>
                   </li>
@@ -97,7 +97,8 @@
               <p class="text-primary">Lugar de oferta: {{provincia}}, {{ciudad}}</p>
             </div>
             <div class="button_container">
-              <button type="button" class="button service_button">Solicitar servicio</button>
+              <a href="/facturar" class="href"><button type="button" class="button service_button">Solicitar servicio</button></a>
+              
             </div>
 
 
@@ -121,10 +122,10 @@
   <br />
 
   <div class="container ">
-    <h2>Comentarios</h2>
+    <h2>Comentarios sobre el usuario {{nombrePerServicio}}</h2>
     <div class="row border rounded border border-primary">
       <div class="col-lg-12 border rounded">
-        <div async id="face"></div>
+        <div async id="face" href=""></div>
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router,NavigationExtras, ActivatedRoute } from '@angular/router';
 import {  Icon, icon, Marker } from 'leaflet';
 import 'leaflet';
 import 'leaflet-routing-machine';
@@ -177,6 +177,23 @@ export class SolicitarComponent implements OnInit {
       console.log('no se obtuvo la ubicación');
     }
 
+  }
+
+  navigateOtherPage(datos) {
+    console.log(datos);
+    // tslint:disable-next-line:prefer-const
+    let cadenaEcriptada = btoa(datos.correo + ';' + datos.idServicio);
+    // tslint:disable-next-line:prefer-const
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        'serv': cadenaEcriptada
+      }
+    };
+    /*
+      queryParams.get('datos');
+    */
+    console.log(navigationExtras);
+    this.router.navigate(['/facturar'], navigationExtras);
   }
 
 }

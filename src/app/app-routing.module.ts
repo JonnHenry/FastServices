@@ -8,6 +8,7 @@ import { BuscarComponent } from './buscar/buscar.component';
 import { ModUsuarioComponent } from './mod-usuario/mod-usuario.component';
 import { ModServicioComponent } from './mod-servicio/mod-servicio.component';
 import { ChatComponent } from './chat/chat.component';
+import { FacturaComponent } from './factura/factura.component';
 
 
 const appRoutes: Routes = [
@@ -20,7 +21,8 @@ const appRoutes: Routes = [
   {path: 'config-perfil', component : ModUsuarioComponent},
   {path: 'servicios', component : ModServicioComponent},
   {path: 'solicitar', component : SolicitarComponent},
-  {path: 'chatUser', component : ChatComponent}
+  {path: 'chatUser', component : ChatComponent},
+  {path: 'facturar', component : FacturaComponent}
 
 ];
 

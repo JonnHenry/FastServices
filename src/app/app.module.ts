@@ -20,6 +20,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { FacturaComponent } from './factura/factura.component';
 
 // tslint:disable-next-line:prefer-const
 let config = new AuthServiceConfig([
@@ -45,7 +46,8 @@ export function provideConfig() {
     ModUsuarioComponent,
     ModServicioComponent,
     ChatComponent,
-    UbicacionComponent
+    UbicacionComponent,
+    FacturaComponent
   ],
   imports: [
     BrowserModule,
